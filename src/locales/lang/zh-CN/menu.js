@@ -42,5 +42,6 @@ export default {
   'menu.clickToView': '点击查看',
   'menu.text': '文本工具',
   'menu.text.character-conversion': '英文字符转换',
-  'menu.text.json-editor': 'JSON编辑器'
+  'menu.text.json-editor': 'JSON编辑器',
+  'menu.text.markdown-editor': 'Markdown编辑器',
 }

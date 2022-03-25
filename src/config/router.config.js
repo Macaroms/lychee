@@ -66,6 +66,12 @@ export const asyncRouterMap = [
             name: 'jsonEditor',
             component: () => import('@/views/text/jsonEditor'),
             meta: { title: 'menu.text.json-editor', keepAlive: true, permission: ['text'] }
+          },
+          {
+            path: '/text/markdown-editor',
+            name: 'markdownEditor',
+            component: () => import('@/views/text/markdownEditor'),
+            meta: { title: 'menu.text.markdown-editor', keepAlive: true, permission: ['text'] }
           }
         ]
       },

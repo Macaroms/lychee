@@ -16,5 +16,11 @@ export default {
     'subset of ECMAScript (JS specification formulated by the European Computer Association), it uses a text format ' +
     'completely independent of the programming language to store and represent data. The concise and clear hierarchy ' +
     'makes JSON an ideal data exchange language. It is easy for people to read and write, but also easy for machine ' +
-    'analysis and generation, and effectively improves the network transmission efficiency.'
+    'analysis and generation, and effectively improves the network transmission efficiency.',
+  'text.markdown-editor.markdownCopy': 'Copy Markdown Text',
+  'text.markdown-editor.htmlText': 'View HTML Text',
+  'text.markdown-editor.markdownDesc': 'Markdown is a lightweight markup language founded by John Gruber. It allows ' +
+    'people to write documents in plain text format that is easy to read and write, and then convert them into valid ' +
+    'XHTML (or HTML) documents. This language absorbs many of the features of plain text markup already available in e-mail.',
+
 }

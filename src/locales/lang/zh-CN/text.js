@@ -14,4 +14,8 @@ export default {
   'text.json-editor.jsonDesc': 'JSON(JavaScript Object Notation, JS 对象简谱) 是一种轻量级的数据交换格式。它基于 ECMAScript ' +
     '(欧洲计算机协会制定的js规范)的一个子集，采用完全独立于编程语言的文本格式来存储和表示数据。简洁和清晰的层次结构使得 JSON 成为理想的数据 交换语言。 ' +
     '易于人阅读和编写，同时也易于机器解析和生成，并有效地提升网络传输效率。',
+  'text.markdown-editor.markdownCopy': '复制Markdown文本',
+  'text.markdown-editor.htmlText': '查看HTML文本',
+  'text.markdown-editor.markdownDesc': 'Markdown是一种轻量级标记语言，创始人为约翰·格鲁伯（英语：John Gruber）。 它允许人们使用易读易写' +
+    '的纯文本格式编写文档，然后转换成有效的XHTML（或者HTML）文档。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。',
 }

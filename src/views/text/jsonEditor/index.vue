@@ -52,7 +52,7 @@ import 'jsoneditor/dist/jsoneditor.min.css'
 import jsoneditor from 'jsoneditor'
 
 export default {
-  name: 'CharacterConversion',
+  name: 'jsonEditor',
   data() {
     return {
       form: this.$form.createForm(this),

@@ -20,3 +20,11 @@ export default {
   }
 }
 </script>
+
+<style>
+.ant-pro-global-footer {
+  margin: 0 0 24px 0;
+  padding: 0 16px;
+  text-align: center;
+}
+</style>
