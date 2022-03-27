@@ -44,4 +44,5 @@ export default {
   'menu.text.character-conversion': 'Character Conversion',
   'menu.text.json-editor': 'JSON Editor',
   'menu.text.markdown-editor': 'Markdown Editor',
+  'menu.text.radix-convert': 'Radix Convert',
 }

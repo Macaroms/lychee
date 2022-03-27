@@ -72,6 +72,12 @@ export const asyncRouterMap = [
             name: 'markdownEditor',
             component: () => import('@/views/text/markdownEditor'),
             meta: { title: 'menu.text.markdown-editor', keepAlive: true, permission: ['text'] }
+          },
+          {
+            path: '/text/radix-convert',
+            name: 'radixConvert',
+            component: () => import('@/views/text/radixConvert'),
+            meta: { title: 'menu.text.radix-convert', keepAlive: true, permission: ['text'] }
           }
         ]
       },

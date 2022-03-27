@@ -44,4 +44,5 @@ export default {
   'menu.text.character-conversion': '英文字符转换',
   'menu.text.json-editor': 'JSON编辑器',
   'menu.text.markdown-editor': 'Markdown编辑器',
+  'menu.text.radix-convert': '进制转换',
 }

@@ -1,4 +1,6 @@
 export default {
+  'text.convert': 'Convert',
+  'text.result': 'Result',
   'text.character-conversion.description': 'Tip: the initial capitalization is only valid if there is [,;.?! Space] ' +
     'before the English word; The initial letter of each sentence is capitalized only in the symbol [.!?] The first word after is valid;',
   'text.character-conversion.copy': 'Copy',
@@ -22,5 +24,11 @@ export default {
   'text.markdown-editor.markdownDesc': 'Markdown is a lightweight markup language founded by John Gruber. It allows ' +
     'people to write documents in plain text format that is easy to read and write, and then convert them into valid ' +
     'XHTML (or HTML) documents. This language absorbs many of the features of plain text markup already available in e-mail.',
-
+  'text.radix-convert.radixConvert': 'Common Radix Convert',
+  'text.radix-convert.selfRadixConvert': 'Self-help Radix Convert',
+  'text.radix-convert.radix': ' Radix',
+  'text.radix-convert.convertValue': 'Converted Value',
+  'text.radix-convert.beforeConversionRadix': 'Before Conversion Radix',
+  'text.radix-convert.afterConversionRadix': 'After Conversion Radix',
+  'text.radix-convert.desc': 'The number num in m radix is converted to n radix',
 }

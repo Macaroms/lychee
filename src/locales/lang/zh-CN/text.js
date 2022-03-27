@@ -1,4 +1,6 @@
 export default {
+  'text.convert': '转换',
+  'text.result': '结果',
   'text.character-conversion.description': '提示：首字母转大写仅在英文单词前有[,;.?!空格]的情况下才有效；句子首字母大写仅在符号[.!?]后的第一个单词有效；',
   'text.character-conversion.copy': '复制',
   'text.character-conversion.cut': '剪切',
@@ -18,4 +20,11 @@ export default {
   'text.markdown-editor.htmlText': '查看HTML文本',
   'text.markdown-editor.markdownDesc': 'Markdown是一种轻量级标记语言，创始人为约翰·格鲁伯（英语：John Gruber）。 它允许人们使用易读易写' +
     '的纯文本格式编写文档，然后转换成有效的XHTML（或者HTML）文档。这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。',
+  'text.radix-convert.radixConvert': '常用进制转换',
+  'text.radix-convert.selfRadixConvert': '自定义进制转换',
+  'text.radix-convert.radix': ' 进制',
+  'text.radix-convert.convertValue': '转换的值',
+  'text.radix-convert.beforeConversionRadix': '转换前的进制',
+  'text.radix-convert.afterConversionRadix': '转换后的进制',
+  'text.radix-convert.desc': 'm进制的数字num转为n进制',
 }
