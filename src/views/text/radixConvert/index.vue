@@ -85,13 +85,13 @@
         </a-form-item>
       </a-form>
     </a-card>
-    <a-card style='margin-top: 20px' :bordered='false'>
-      <a-descriptions>
-        <a-descriptions-item label='JavaScript' :span='3'>
-          {{ $t('text.radix-convert.desc') }} : let result = parseInt(num + '', m).toString(n); ( 0 <= m,n <= 36 )
-        </a-descriptions-item>
-      </a-descriptions>
-    </a-card>
+<!--    <a-card style='margin-top: 20px' :bordered='false'>-->
+<!--      <a-descriptions>-->
+<!--        <a-descriptions-item label='JavaScript' :span='3'>-->
+<!--          {{ $t('text.radix-convert.desc') }} : let result = parseInt(num + '', m).toString(n); ( 0 <= m,n <= 36 )-->
+<!--        </a-descriptions-item>-->
+<!--      </a-descriptions>-->
+<!--    </a-card>-->
   </page-header-wrapper>
 </template>
 

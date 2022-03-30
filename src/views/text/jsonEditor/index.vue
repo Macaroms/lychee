@@ -29,21 +29,21 @@
         </a-form>
       </a-spin>
     </a-card>
-    <a-card style='margin-top: 20px' :bordered='false'>
-      <a-descriptions>
-        <a-descriptions-item label='JSON' :span='3'>
-          {{ $t('text.json-editor.jsonDesc') }}
-          <a href='https://baike.baidu.com/item/JSON/2462549?fr=aladdin' target='_blank'>
-            {{ $t('menu.clickToView')}}
-          </a>
-        </a-descriptions-item>
-        <a-descriptions-item label='Github' :span='3'>
-          <a href='https://github.com/josdejong/jsoneditorhttps://github.com/josdejong/jsoneditor' target='_blank'>
-            JSON Editor
-          </a>
-        </a-descriptions-item>
-      </a-descriptions>
-    </a-card>
+<!--    <a-card style='margin-top: 20px' :bordered='false'>-->
+<!--      <a-descriptions>-->
+<!--        <a-descriptions-item label='JSON' :span='3'>-->
+<!--          {{ $t('text.json-editor.jsonDesc') }}-->
+<!--          <a href='https://baike.baidu.com/item/JSON/2462549?fr=aladdin' target='_blank'>-->
+<!--            {{ $t('menu.clickToView')}}-->
+<!--          </a>-->
+<!--        </a-descriptions-item>-->
+<!--        <a-descriptions-item label='Github' :span='3'>-->
+<!--          <a href='https://github.com/josdejong/jsoneditorhttps://github.com/josdejong/jsoneditor' target='_blank'>-->
+<!--            JSON Editor-->
+<!--          </a>-->
+<!--        </a-descriptions-item>-->
+<!--      </a-descriptions>-->
+<!--    </a-card>-->
   </page-header-wrapper>
 </template>
 

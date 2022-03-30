@@ -13,21 +13,21 @@
         <mavon-editor v-model="content" ref="md" @change="change" style="height: 600px"/>
       </div>
     </a-card>
-    <a-card style='margin-top: 20px' :bordered='false'>
-      <a-descriptions>
-        <a-descriptions-item label='Markdown' :span='3'>
-          {{ $t('text.markdown-editor.markdownDesc') }}
-          <a href='https://baike.baidu.com/item/markdown/3245829?fr=aladdin' target='_blank'>
-            {{ $t('menu.clickToView') }}
-          </a>
-        </a-descriptions-item>
-        <a-descriptions-item label='Github' :span='3'>
-          <a href='https://github.com/hinesboy/mavonEditor' target='_blank'>
-            Mavon Editor
-          </a>
-        </a-descriptions-item>
-      </a-descriptions>
-    </a-card>
+<!--    <a-card style='margin-top: 20px' :bordered='false'>-->
+<!--      <a-descriptions>-->
+<!--        <a-descriptions-item label='Markdown' :span='3'>-->
+<!--          {{ $t('text.markdown-editor.markdownDesc') }}-->
+<!--          <a href='https://baike.baidu.com/item/markdown/3245829?fr=aladdin' target='_blank'>-->
+<!--            {{ $t('menu.clickToView') }}-->
+<!--          </a>-->
+<!--        </a-descriptions-item>-->
+<!--        <a-descriptions-item label='Github' :span='3'>-->
+<!--          <a href='https://github.com/hinesboy/mavonEditor' target='_blank'>-->
+<!--            Mavon Editor-->
+<!--          </a>-->
+<!--        </a-descriptions-item>-->
+<!--      </a-descriptions>-->
+<!--    </a-card>-->
   </page-header-wrapper>
 </template>
 

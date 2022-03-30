@@ -45,4 +45,5 @@ export default {
   'menu.text.json-editor': 'JSON编辑器',
   'menu.text.markdown-editor': 'Markdown编辑器',
   'menu.text.radix-convert': '进制转换',
+  'menu.text.color-picker': '取色器',
 }

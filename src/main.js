@@ -20,8 +20,9 @@ import './core/lazy_use' // use lazy load components
 import './utils/filter' // global filter
 import './global.less' // global style
 import VueClipboard from 'vue-clipboard2'
-
 Vue.use(VueClipboard)
+import vcolorpicker from 'vcolorpicker'
+Vue.use(vcolorpicker)
 
 Vue.config.productionTip = false
 

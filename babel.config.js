@@ -4,7 +4,7 @@ const IS_PREVIEW = process.env.VUE_APP_PREVIEW === 'true'
 const plugins = []
 if (IS_PROD && !IS_PREVIEW) {
   // 去除日志的插件，
-  plugins.push('transform-remove-console')
+  // plugins.push('transform-remove-console')
 }
 
 // lazy load ant-design-vue

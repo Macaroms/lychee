@@ -45,4 +45,5 @@ export default {
   'menu.text.json-editor': 'JSON Editor',
   'menu.text.markdown-editor': 'Markdown Editor',
   'menu.text.radix-convert': 'Radix Convert',
+  'menu.text.color-picker': 'Color Picker',
 }
