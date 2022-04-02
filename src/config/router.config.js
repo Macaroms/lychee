@@ -56,12 +56,6 @@ export const asyncRouterMap = [
         meta: { title: 'menu.text', icon: 'file-sync', permission: ['text'] },
         children: [
           {
-            path: '/text/character-conversion',
-            name: 'CharacterConversion',
-            component: () => import('@/views/text/characterConversion/index'),
-            meta: { title: 'menu.text.character-conversion', keepAlive: true, permission: ['text'] }
-          },
-          {
             path: '/text/json-editor',
             name: 'jsonEditor',
             component: () => import('@/views/text/jsonEditor'),
@@ -74,16 +68,36 @@ export const asyncRouterMap = [
             meta: { title: 'menu.text.markdown-editor', keepAlive: true, permission: ['text'] }
           },
           {
+            path: '/text/color-picker',
+            name: 'colorPicker',
+            component: () => import('@/views/text/colorPicker'),
+            meta: { title: 'menu.text.color-picker', keepAlive: true, permission: ['text'] }
+          }
+        ]
+      },
+      {
+        path: '/convert',
+        redirect: '/convert/text-convert',
+        component: RouteView,
+        meta: { title: 'menu.convert', icon: 'sync', permission: ['text'] },
+        children: [
+          {
+            path: '/text/character-conversion',
+            name: 'CharacterConversion',
+            component: () => import('@/views/text/characterConversion/index'),
+            meta: { title: 'menu.text.character-conversion', keepAlive: true, permission: ['text'] }
+          },
+          {
             path: '/text/radix-convert',
             name: 'radixConvert',
             component: () => import('@/views/text/radixConvert'),
             meta: { title: 'menu.text.radix-convert', keepAlive: true, permission: ['text'] }
           },
           {
-            path: '/text/color-picker',
-            name: 'colorPicker',
-            component: () => import('@/views/text/colorPicker'),
-            meta: { title: 'menu.text.color-picker', keepAlive: true, permission: ['text'] }
+            path: '/convert/rmb-convert',
+            name: 'rmbConvert',
+            component: () => import('@/views/convert/rmbConvert/index'),
+            meta: { title: 'menu.convert.rmb-convert', keepAlive: true, permission: ['text'] }
           }
         ]
       },

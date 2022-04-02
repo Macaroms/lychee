@@ -114,7 +114,6 @@ export default {
     },
     // 复制
     onCopy() {
-
       this.$copyText(this.context).then(() => {
         this.$message.success('已成功复制到剪切板')
       }).catch(() => {
