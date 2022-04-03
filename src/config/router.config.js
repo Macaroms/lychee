@@ -72,6 +72,12 @@ export const asyncRouterMap = [
             name: 'colorPicker',
             component: () => import('@/views/text/colorPicker'),
             meta: { title: 'menu.text.color-picker', keepAlive: true, permission: ['text'] }
+          },
+          {
+            path: '/text/cron-editor',
+            name: 'cronTabEditor',
+            component: () => import('@/views/text/cronTabEditor'),
+            meta: { title: 'menu.text.cron-editor', keepAlive: true, permission: ['text'] }
           }
         ]
       },
@@ -79,7 +85,7 @@ export const asyncRouterMap = [
         path: '/convert',
         redirect: '/convert/text-convert',
         component: RouteView,
-        meta: { title: 'menu.convert', icon: 'sync', permission: ['text'] },
+        meta: { title: 'menu.convert', icon: 'swap', permission: ['text'] },
         children: [
           {
             path: '/text/character-conversion',

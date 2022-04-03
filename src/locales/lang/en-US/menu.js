@@ -46,6 +46,7 @@ export default {
   'menu.text.markdown-editor': 'Markdown Editor',
   'menu.text.radix-convert': 'Radix Convert',
   'menu.text.color-picker': 'Color Picker',
+  'menu.text.cron-editor': 'Cron Editor',
   'menu.convert': 'Text Convert',
   'menu.convert.rmb-convert': 'RMB To Capital',
 }

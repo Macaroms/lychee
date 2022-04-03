@@ -6,20 +6,21 @@
         <a-form :form='form'>
           <a-row class='form-row' :gutter='24'>
             <a-col :lg='24' :md='12' :sm='24'>
-              <a-form-item label="输入人民币金额" :wrapper-col='{ span: 24, offset: 0 }'>
+              <a-form-item label="人民币数字金额" :wrapper-col='{ span: 24, offset: 0 }'>
                 <a-input-number
                   :formatter="value => `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')"
                   :parser="value => value.replace(/￥\s?|(,*)/g, '')"
                   @change="onChange"
                   style="width: 100%"
                   v-model="rmbNum"
+                  placeholder="请输入金额"
                 />
               </a-form-item>
             </a-col>
           </a-row>
           <a-row class='form-row' :gutter='24'>
             <a-col :lg='24' :md='12' :sm='24'>
-              <a-form-item label="输入人民币金额" :wrapper-col='{ span: 24, offset: 0 }'>
+              <a-form-item label="人民币大写金额" :wrapper-col='{ span: 24, offset: 0 }'>
                 <a-input
                   style="width: 100%"
                   v-model="rmbStr"
