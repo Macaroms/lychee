@@ -38,6 +38,7 @@ export default {
   'menu.account.logout': 'Logout',
   //------------------
   'sys.placeholder': 'Please enter the content',
+  'menu.lychee-tools': 'Lychee Tools',
   'menu.dashboard.machine': 'Machine Info',
   'menu.clickToView': 'Click To View',
   'menu.text': 'Text Tools',
@@ -47,6 +48,8 @@ export default {
   'menu.text.radix-convert': 'Radix Convert',
   'menu.text.color-picker': 'Color Picker',
   'menu.text.cron-editor': 'Cron Editor',
+  'menu.text.xml-editor': 'XML Editor',
   'menu.convert': 'Text Convert',
   'menu.convert.rmb-convert': 'RMB To Capital',
+  'menu.turing-robot': 'Turing Robot',
 }

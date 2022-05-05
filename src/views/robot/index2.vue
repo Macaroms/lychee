@@ -3,51 +3,7 @@
     <a-card :body-style="{padding: '24px 32px'}" :bordered='false'>
       <a-divider orientation='left'>{{ $t('text.radix-convert.radixConvert') }}</a-divider>
       <a-spin :spinning='confirmLoading'>
-        <a-form :form='form'>
-          <a-row class='form-row' :gutter='24'>
-            <a-col :lg='8' :md='12' :sm='24'>
-              <a-form-item :label="2+$t('text.radix-convert.radix')" :wrapper-col='{ span: 24, offset: 0 }'>
-                <a-input v-model="radix2" @change="handleChange($event,2)"/>
-              </a-form-item>
-            </a-col>
-            <a-col :lg='8' :md='12' :sm='24'>
-              <a-form-item :label="4+$t('text.radix-convert.radix')" :wrapper-col='{ span: 24, offset: 0 }'>
-                <a-input v-model="radix4" @change="handleChange($event,4)"/>
-              </a-form-item>
-            </a-col>
-            <a-col :lg='8' :md='12' :sm='24'>
-              <a-form-item :label="8+$t('text.radix-convert.radix')" :wrapper-col='{ span: 24, offset: 0 }'>
-                <a-input v-model="radix8" @change="handleChange($event,8)"/>
-              </a-form-item>
-            </a-col>
-          </a-row>
-          <a-row class='form-row' :gutter='24'>
-            <a-col :lg='8' :md='12' :sm='24'>
-              <a-form-item :label="10+$t('text.radix-convert.radix')" :wrapper-col='{ span: 24, offset: 0 }'>
-                <a-input v-model="radix10" @change="handleChange($event,10)"/>
-              </a-form-item>
-            </a-col>
-            <a-col :lg='8' :md='12' :sm='24'>
-              <a-form-item :label="16+$t('text.radix-convert.radix')" :wrapper-col='{ span: 24, offset: 0 }'>
-                <a-input v-model="radix16" @change="handleChange($event,16)"/>
-              </a-form-item>
-            </a-col>
-            <a-col :lg='8' :md='12' :sm='24'>
-              <a-form-item :label="32+$t('text.radix-convert.radix')" :wrapper-col='{ span: 24, offset: 0 }'>
-                <a-input v-model="radix32" @change="handleChange($event,32)"/>
-              </a-form-item>
-            </a-col>
-          </a-row>
-          <a-row class='form-row' :gutter='24'>
-            <a-col :lg='24' :md='12' :sm='24'>
-              <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
-                <a-button type="danger" @click="reset" >
-                  {{ $t('text.character-conversion.reset') }}
-                </a-button>
-              </a-form-item>
-            </a-col>
-          </a-row>
-        </a-form>
+        <lemon-imui ref="IMUI" />
       </a-spin>
     </a-card>
     <a-card style='margin-top: 20px' :bordered='false'>

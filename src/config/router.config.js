@@ -12,10 +12,16 @@ export const asyncRouterMap = [
     path: '/',
     name: 'index',
     component: BasicLayout,
-    meta: { title: 'menu.home' },
-    redirect: '/dashboard/machine',
+    meta: { title: 'menu.lychee-tools' },
+    redirect: '/home',
     children: [
       // dashboard
+      {
+        path: '/home',
+        name: 'home',
+        component: () => import('@/views/dashboard/Home'),
+        meta: { title: 'menu.home', icon: 'home', permission: ['home'] },
+      },
       {
         path: '/dashboard',
         name: 'dashboard',
@@ -75,37 +81,43 @@ export const asyncRouterMap = [
           },
           {
             path: '/text/cron-editor',
-            name: 'cronTabEditor',
-            component: () => import('@/views/text/cronTabEditor'),
+            name: 'cronEditor',
+            component: () => import('@/views/text/cronEditor'),
             meta: { title: 'menu.text.cron-editor', keepAlive: true, permission: ['text'] }
-          }
+          },
         ]
       },
       {
         path: '/convert',
         redirect: '/convert/text-convert',
         component: RouteView,
-        meta: { title: 'menu.convert', icon: 'swap', permission: ['text'] },
+        meta: { title: 'menu.convert', icon: 'swap', permission: ['convert'] },
         children: [
           {
             path: '/text/character-conversion',
             name: 'CharacterConversion',
-            component: () => import('@/views/text/characterConversion/index'),
-            meta: { title: 'menu.text.character-conversion', keepAlive: true, permission: ['text'] }
+            component: () => import('@/views/text/characterConversion'),
+            meta: { title: 'menu.text.character-conversion', keepAlive: true, permission: ['convert'] }
           },
           {
             path: '/text/radix-convert',
             name: 'radixConvert',
             component: () => import('@/views/text/radixConvert'),
-            meta: { title: 'menu.text.radix-convert', keepAlive: true, permission: ['text'] }
+            meta: { title: 'menu.text.radix-convert', keepAlive: true, permission: ['convert'] }
           },
           {
             path: '/convert/rmb-convert',
             name: 'rmbConvert',
-            component: () => import('@/views/convert/rmbConvert/index'),
-            meta: { title: 'menu.convert.rmb-convert', keepAlive: true, permission: ['text'] }
+            component: () => import('@/views/convert/rmbConvert'),
+            meta: { title: 'menu.convert.rmb-convert', keepAlive: true, permission: ['convert'] }
           }
         ]
+      },
+      {
+        path: '/robot',
+        name: 'turingRobot',
+        component: () => import('@/views/robot/index2'),
+        meta: { title: 'menu.turing-robot', icon: 'robot', permission: ['robot'] },
       },
       // forms
       // {

@@ -38,9 +38,9 @@ export default {
       this.cron = val;
     },
     cron(val) {
-      console.log('cron1', replaceWeekName(val));
+      // console.log('cron1', replaceWeekName(val));
       this.afterCron = replaceWeekName(val);
-      console.log('cron2',val);
+      // console.log('cron2',val);
       this.$emit("input", val);
     }
   },

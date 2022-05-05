@@ -1,6 +1,6 @@
 export default {
   'menu.welcome': '欢迎',
-  'menu.home': '主页',
+  'menu.home': '首页',
   'menu.dashboard': '仪表盘',
   'menu.dashboard.analysis': '分析页',
   'menu.dashboard.monitor': '监控页',
@@ -38,6 +38,7 @@ export default {
   'menu.account.logout': '退出登录',
   //------------------
   'sys.placeholder': '请输入内容',
+  'menu.lychee-tools': '荔枝工具箱',
   'menu.dashboard.machine': '服务监控',
   'menu.clickToView': '点击查看',
   'menu.text': '文本工具',
@@ -46,7 +47,9 @@ export default {
   'menu.text.markdown-editor': 'Markdown编辑器',
   'menu.text.radix-convert': '进制转换',
   'menu.text.color-picker': '取色器',
-  'menu.text.cron-editor': 'Cron表达式编辑器',
+  'menu.text.cron-editor': 'Cron表达式',
+  'menu.text.xml-editor': 'XML编辑器',
   'menu.convert': '文本转换',
   'menu.convert.rmb-convert': '人民币数字转大写',
+  'menu.turing-robot': '图灵机器人',
 }

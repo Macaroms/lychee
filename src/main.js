@@ -23,6 +23,11 @@ import VueClipboard from 'vue-clipboard2'
 Vue.use(VueClipboard)
 import vcolorpicker from 'vcolorpicker'
 Vue.use(vcolorpicker)
+import Chat from 'vue-beautiful-chat'
+Vue.use(Chat)
+import LemonIMUI from 'lemon-imui';
+import 'lemon-imui/dist/index.css';
+Vue.use(LemonIMUI);
 
 Vue.config.productionTip = false
 

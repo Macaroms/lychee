@@ -5,12 +5,12 @@
         <a-button type='primary' @click='getMarkdownText'>
           {{ $t('text.markdown-editor.markdownCopy') }}
         </a-button>
-        <a-button type='primary' style='margin-left: 8px' @click='getHtml'>
+        <a-button type='primary' style='margin-left: 8px'  @click="$message.warning('功能开发中')">
           {{ $t('text.markdown-editor.htmlText') }}
         </a-button>
       </div>
       <div>
-        <mavon-editor v-model="content" ref="md" @change="change" style="height: 600px"/>
+        <mavon-editor v-model="content" ref="md" @change="change" style="height: 600px;z-index: 0"/>
       </div>
     </a-card>
 <!--    <a-card style='margin-top: 20px' :bordered='false'>-->
@@ -52,6 +52,10 @@ export default {
   methods: {
     // 复制
     onCopy(text) {
+      if(text.length === 0){
+        this.$message.warning('未检测到内容')
+        return
+      }
       this.$copyText(text).then(() => {
         this.$message.success('已成功复制到剪切板')
       }, (e) => {
