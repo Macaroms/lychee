@@ -52,4 +52,5 @@ export default {
   'menu.convert': '文本转换',
   'menu.convert.rmb-convert': '人民币数字转大写',
   'menu.turing-robot': '图灵机器人',
+  'menu.convert.en-code': '编码/解码',
 }

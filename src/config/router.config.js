@@ -110,6 +110,12 @@ export const asyncRouterMap = [
             name: 'rmbConvert',
             component: () => import('@/views/convert/rmbConvert'),
             meta: { title: 'menu.convert.rmb-convert', keepAlive: true, permission: ['convert'] }
+          },
+          {
+            path: '/convert/en-code',
+            name: 'enCode',
+            component: () => import('@/views/convert/enCode'),
+            meta: { title: 'menu.convert.en-code', keepAlive: true, permission: ['convert'] }
           }
         ]
       },

@@ -52,4 +52,5 @@ export default {
   'menu.convert': 'Text Convert',
   'menu.convert.rmb-convert': 'RMB To Capital',
   'menu.turing-robot': 'Turing Robot',
+  'menu.convert.en-code': 'EnCode And DeCode',
 }
