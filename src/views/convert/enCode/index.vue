@@ -77,9 +77,9 @@ export default {
       },
       codeType: 'base64',
       url: {
-        base64Encode:'/text/base64Encode',
-        base64Decode:'/text/base64Decode',
-        md5Encode:'/text/md5Encode',
+        base64Encode:'/api/text/base64Encode',
+        base64Decode:'/api/text/base64Decode',
+        md5Encode:'/api/text/md5Encode',
       }
     }
   },
