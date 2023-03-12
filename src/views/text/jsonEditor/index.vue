@@ -12,20 +12,30 @@
             </a-col>
           </a-row>
           <br />
-          <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
-            <a-row class='form-row' :gutter='24'>
-              <a-col :lg='24' :md='12' :sm='24'>
-                <div style='text-align: right'>
-                  <a-button @click='onCopy'>
-                    {{ $t('text.character-conversion.copy') }}
-                  </a-button>
-                  <a-button @click='reset' style='margin-left: 8px' type='danger'>
-                    {{ $t('text.character-conversion.reset') }}
-                  </a-button>
-                </div>
-              </a-col>
-            </a-row>
-          </a-form-item>
+          <a-row class='form-row' :gutter='24'>
+            <a-col :lg='8' :md='12' :sm='24'>
+              <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
+                <a-input style="width: 100%" v-model="jsonPath" placeholder="请输入jsonPath表达式" />
+              </a-form-item>
+            </a-col>
+            <a-col :lg='4' :md='12' :sm='24'>
+              <div style='text-align: right'>
+                <a-button type="primary" @click='pickTextByPath'>
+                  获取结果
+                </a-button>
+              </div>
+            </a-col>
+            <a-col :lg='12' :md='12' :sm='24'>
+              <div style='text-align: right'>
+                <a-button @click='onCopy'>
+                  {{ $t('text.character-conversion.copy') }}
+                </a-button>
+                <a-button @click='reset' style='margin-left: 8px' type='danger'>
+                  {{ $t('text.character-conversion.reset') }}
+                </a-button>
+              </div>
+            </a-col>
+          </a-row>
         </a-form>
       </a-spin>
     </a-card>
@@ -50,9 +60,14 @@
 <script>
 import 'jsoneditor/dist/jsoneditor.min.css'
 import jsoneditor from 'jsoneditor'
+import {postAction} from '@/api/httpManager.js'
+import TaskForm from './modules/TaskForm'
 
 export default {
   name: 'jsonEditor',
+  components: {
+    TaskForm,
+  },
   data() {
     return {
       form: this.$form.createForm(this),
@@ -62,9 +77,11 @@ export default {
       },
       codeEditor: null,
       treeEditor: null,
-      syncData: true
-
-
+      syncData: true,
+      url: {
+        pickTextByPath:'/api/text/pickTextByPath',
+      },
+      jsonPath: ''
     }
   },
   computed: {},
@@ -142,8 +159,45 @@ export default {
     },
     getHeight() {
       this.contentStyleObj.height = window.innerHeight - 300 + 'px'
-    }
-
+    },
+    pickTextByPath(){
+      this.confirmLoading = true
+      postAction(
+        this.url.pickTextByPath,
+        {
+          type: "json",
+          src: this.codeEditor.getText(),
+          path: this.jsonPath
+        }
+      ).then((res) => {
+        if(res.success){
+          this.$dialog(TaskForm,
+            // component props
+            {
+              record: res.data,
+              on: {
+                ok () {
+                },
+                cancel () {
+                },
+                close () {
+                }
+              }
+            },
+            // modal props
+            {
+              title: 'JsonPath提取结果',
+              width: 700,
+              centered: true,
+              maskClosable: false
+            })
+        }else {
+          this.$message.error(res.message)
+        }
+      }).finally(() => {
+        this.confirmLoading = false
+      })
+    },
   }
 }
 </script>

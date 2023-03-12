@@ -78,7 +78,7 @@ export default {
         sm: {span: 24}
       },
       url: {
-        getNextExecTime: '/text/getNextExecTime'
+        getNextExecTime: '/api/text/getNextExecTime'
       },
       columns: [
         {

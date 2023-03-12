@@ -57,7 +57,7 @@ export const asyncRouterMap = [
       },
       {
         path: '/text',
-        redirect: '/text/text-tool',
+        redirect: '/text/json-editor',
         component: RouteView,
         meta: { title: 'menu.text', icon: 'file-sync', permission: ['text'] },
         children: [
@@ -89,7 +89,7 @@ export const asyncRouterMap = [
       },
       {
         path: '/convert',
-        redirect: '/convert/text-convert',
+        redirect: '/text/character-conversion',
         component: RouteView,
         meta: { title: 'menu.convert', icon: 'swap', permission: ['convert'] },
         children: [
@@ -120,11 +120,31 @@ export const asyncRouterMap = [
         ]
       },
       {
-        path: '/robot',
-        name: 'turingRobot',
-        component: () => import('@/views/robot/index2'),
-        meta: { title: 'menu.turing-robot', icon: 'robot', permission: ['robot'] },
+        path: '/search',
+        redirect: '/search/ipData',
+        component: RouteView,
+        meta: { title: 'menu.search', icon: 'search', permission: ['convert'] },
+        children: [
+          {
+            path: '/search/ipData',
+            name: 'ipData',
+            component: () => import('@/views/search/ipData'),
+            meta: { title: 'menu.search.ipData', keepAlive: true, permission: ['search'] }
+          },
+          {
+            path: '/search/history',
+            name: 'history',
+            component: () => import('@/views/search/history'),
+            meta: { title: 'menu.search.history', keepAlive: true, permission: ['search'] }
+          },
+        ]
       },
+      // {
+      //   path: '/robot',
+      //   name: 'turingRobot',
+      //   component: () => import('@/views/robot/index2'),
+      //   meta: { title: 'menu.turing-robot', icon: 'robot', permission: ['robot'] },
+      // },
       // forms
       // {
       //   path: '/form',

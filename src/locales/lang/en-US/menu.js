@@ -53,4 +53,7 @@ export default {
   'menu.convert.rmb-convert': 'RMB To Capital',
   'menu.turing-robot': 'Turing Robot',
   'menu.convert.en-code': 'EnCode And DeCode',
+  'menu.search': 'Info Search',
+  'menu.search.history': 'Today History',
+  'menu.search.ipData': 'IP Info',
 }

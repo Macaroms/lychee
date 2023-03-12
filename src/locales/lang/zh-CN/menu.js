@@ -53,4 +53,7 @@ export default {
   'menu.convert.rmb-convert': '人民币数字转大写',
   'menu.turing-robot': '图灵机器人',
   'menu.convert.en-code': '编码/解码',
+  'menu.search': '信息查询',
+  'menu.search.history': '那年今日',
+  'menu.search.ipData': 'IP归属地查询',
 }

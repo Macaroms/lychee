@@ -35,6 +35,9 @@
       <a-row :gutter="24">
       </a-row>
     </div>
+    <a-card :bordered='false' >
+      <img src="https://api.vore.top/api/Bing" alt="https://api.vore.top/api/Bing" style="height: 100%;width: 100%">
+    </a-card>
   </page-header-wrapper>
 </template>
 
