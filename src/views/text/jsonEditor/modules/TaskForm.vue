@@ -7,7 +7,7 @@
       <a-textarea
         readonly
         v-model="jsonText"
-        :auto-size="{ minRows: 10, maxRows: 50 }"
+        :rows="15"
       />
     </a-form-item>
   </a-form>

@@ -22,39 +22,39 @@ export const asyncRouterMap = [
         component: () => import('@/views/dashboard/Home'),
         meta: { title: 'menu.home', icon: 'home', permission: ['home'] },
       },
-      {
-        path: '/dashboard',
-        name: 'dashboard',
-        redirect: '/dashboard/workplace',
-        component: RouteView,
-        meta: { title: 'menu.dashboard', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
-        children: [
-          // {
-          //   path: '/dashboard/workplace',
-          //   name: 'Workplace',
-          //   component: () => import('@/views/dashboard/Workplace'),
-          //   meta: { title: 'menu.dashboard.workplace', keepAlive: true, permission: ['dashboard'] }
-          // },
-          // {
-          //   path: '/dashboard/analysis/:pageNo([1-9]\\d*)?',
-          //   name: 'Analysis',
-          //   component: () => import('@/views/dashboard/Analysis'),
-          //   meta: { title: 'menu.dashboard.analysis', keepAlive: false, permission: ['dashboard'] }
-          // },
-          // // 外部链接
-          // {
-          //   path: 'https://www.baidu.com/',
-          //   name: 'Monitor',
-          //   meta: { title: 'menu.dashboard.monitor', target: '_blank' }
-          // },
-          {
-            path: '/dashboard/machine',
-            name: 'Machine',
-            component: () => import('@/views/dashboard/Machine'),
-            meta: { title: 'menu.dashboard.machine', keepAlive: true, permission: ['dashboard'] }
-          }
-        ]
-      },
+      // {
+      //   path: '/dashboard',
+      //   name: 'dashboard',
+      //   redirect: '/dashboard/workplace',
+      //   component: RouteView,
+      //   meta: { title: 'menu.dashboard', keepAlive: true, icon: bxAnaalyse, permission: ['dashboard'] },
+      //   children: [
+      //     // {
+      //     //   path: '/dashboard/workplace',
+      //     //   name: 'Workplace',
+      //     //   component: () => import('@/views/dashboard/Workplace'),
+      //     //   meta: { title: 'menu.dashboard.workplace', keepAlive: true, permission: ['dashboard'] }
+      //     // },
+      //     // {
+      //     //   path: '/dashboard/analysis/:pageNo([1-9]\\d*)?',
+      //     //   name: 'Analysis',
+      //     //   component: () => import('@/views/dashboard/Analysis'),
+      //     //   meta: { title: 'menu.dashboard.analysis', keepAlive: false, permission: ['dashboard'] }
+      //     // },
+      //     // // 外部链接
+      //     // {
+      //     //   path: 'https://www.baidu.com/',
+      //     //   name: 'Monitor',
+      //     //   meta: { title: 'menu.dashboard.monitor', target: '_blank' }
+      //     // },
+      //     {
+      //       path: '/dashboard/machine',
+      //       name: 'Machine',
+      //       component: () => import('@/views/dashboard/Machine'),
+      //       meta: { title: 'menu.dashboard.machine', keepAlive: true, permission: ['dashboard'] }
+      //     }
+      //   ]
+      // },
       {
         path: '/text',
         redirect: '/text/json-editor',
@@ -84,6 +84,12 @@ export const asyncRouterMap = [
             name: 'cronEditor',
             component: () => import('@/views/text/cronEditor'),
             meta: { title: 'menu.text.cron-editor', keepAlive: true, permission: ['text'] }
+          },
+          {
+            path: '/text/regex',
+            name: 'regex',
+            component: () => import('@/views/text/regex'),
+            meta: { title: 'menu.text.regex', keepAlive: true, permission: ['text'] }
           },
         ]
       },
@@ -140,10 +146,10 @@ export const asyncRouterMap = [
         ]
       },
       // {
-      //   path: '/robot',
-      //   name: 'turingRobot',
-      //   component: () => import('@/views/robot/index2'),
-      //   meta: { title: 'menu.turing-robot', icon: 'robot', permission: ['robot'] },
+      //   path: '/test/home',
+      //   name: 'test',
+      //   component: () => import('@/views/test/home'),
+      //   meta: { title: 'test', icon: 'robot', permission: ['test'] },
       // },
       // forms
       // {

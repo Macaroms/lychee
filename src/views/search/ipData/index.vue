@@ -17,8 +17,10 @@
           </a-row>
           <a-row class='form-row' :gutter='24'>
             <a-col :lg='24' :md='12' :sm='24'>
-              <a-button type="primary" icon="copy" @click="search">查询</a-button>
-              <a-button type="danger" icon="delete" style="margin-left: 8px" @click="reset">清空</a-button>
+              <a-space>
+                <a-button type="primary" icon="copy" @click="search">查询</a-button>
+                <a-button type="danger" icon="delete" @click="reset">清空</a-button>
+              </a-space>
             </a-col>
           </a-row>
         </a-form>
@@ -50,7 +52,7 @@
 import {getAction} from '@/api/httpManager.js'
 
 export default {
-  name: 'jsonEditor',
+  name: 'IpData',
   data() {
     return {
       form: this.$form.createForm(this),

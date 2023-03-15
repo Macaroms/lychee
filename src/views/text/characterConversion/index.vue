@@ -28,15 +28,18 @@
             </a-button>
           </a-form-item>
           <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
-            <a-button type='primary' style='width: 148px;' @click='toUpperCase'>{{ $t('text.character-conversion.toUpperCase') }}</a-button>
-            <a-button type='primary' style='width: 148px;margin-left: 8px' @click='toLowerCase'>{{ $t('text.character-conversion.toLowerCase') }}</a-button>
-            <a-button type='primary' style='width: 148px;margin-left: 8px' @click='firstLetterUpper'>{{ $t('text.character-conversion.firstLetterUpper') }}</a-button>
-            <a-button type='primary' style='width: 148px;margin-left: 8px'>{{ $t('text.character-conversion.firstLetterAcronym') }}</a-button>
-            <br />
-            <a-button type='primary' style='width: 148px;' @click='underlineToHump'>{{ $t('text.character-conversion.underlineToHump') }}</a-button>
-            <a-button type='primary' style='width: 148px;margin-left: 8px' @click='humpToUnderline'>{{ $t('text.character-conversion.humpToUnderline') }}</a-button>
-            <a-button type='primary' style='width: 148px;margin-left: 8px' @click='spaceToUnderline'>{{ $t('text.character-conversion.spaceToUnderline') }}</a-button>
-            <a-button type='primary' style='width: 148px;margin-left: 8px' @click='underlineToSpace'>{{ $t('text.character-conversion.underlineToSpace') }}</a-button>
+            <a-space>
+              <a-button type='primary' style='width: 148px;' @click='toUpperCase'>{{ $t('text.character-conversion.toUpperCase') }}</a-button>
+              <a-button type='primary' style='width: 148px;' @click='toLowerCase'>{{ $t('text.character-conversion.toLowerCase') }}</a-button>
+              <a-button type='primary' style='width: 148px;' @click='firstLetterUpper'>{{ $t('text.character-conversion.firstLetterUpper') }}</a-button>
+              <a-button type='primary' style='width: 148px;'>{{ $t('text.character-conversion.firstLetterAcronym') }}</a-button>
+            </a-space><br />
+            <a-space>
+              <a-button type='primary' style='width: 148px;' @click='underlineToHump'>{{ $t('text.character-conversion.underlineToHump') }}</a-button>
+              <a-button type='primary' style='width: 148px;' @click='humpToUnderline'>{{ $t('text.character-conversion.humpToUnderline') }}</a-button>
+              <a-button type='primary' style='width: 148px;' @click='spaceToUnderline'>{{ $t('text.character-conversion.spaceToUnderline') }}</a-button>
+              <a-button type='primary' style='width: 148px;' @click='underlineToSpace'>{{ $t('text.character-conversion.underlineToSpace') }}</a-button>
+            </a-space>
           </a-form-item>
         </a-form>
       </a-spin>

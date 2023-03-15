@@ -17,31 +17,43 @@
         </div>
       </div>
     </template>
-    <!--    <template v-slot:extraContent>-->
-    <!--      <div class="extra-content">-->
-    <!--        <div class="stat-item">-->
-    <!--          <a-statistic title="项目数" :value="56"/>-->
-    <!--        </div>-->
-    <!--        <div class="stat-item">-->
-    <!--          <a-statistic title="团队内排名" :value="8" suffix="/ 24"/>-->
-    <!--        </div>-->
-    <!--        <div class="stat-item">-->
-    <!--          <a-statistic title="项目访问" :value="2223"/>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </template>-->
-
     <div>
       <a-row :gutter="24">
       </a-row>
     </div>
-    <a-card :bordered='false' >
-      <img src="https://api.vore.top/api/Bing" alt="https://api.vore.top/api/Bing" style="height: 100%;width: 100%">
+    <a-card :bordered='false' style='text-align: center' :loading="loading">
+<!--      <img src="https://api.vore.top/api/Bing" alt="https://api.vore.top/api/Bing" style="height: 100%;width: 100%">-->
+      <a-row class='form-row' :gutter='24'>
+        <a-col :lg='2' :md='2' :sm='24'>
+          <div style='text-align: left'>
+            <a-button type="link" @click='poetry'>
+              换一句<a-icon type="reload" />
+            </a-button>
+          </div>
+        </a-col>
+        <a-col :lg='20' :md='20' :sm='24'>
+          <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
+            <strong style="font-size: xx-large">{{poetryData.content}}</strong><br/>
+          </a-form-item>
+        </a-col>
+      </a-row>
+      <a-row class='form-row' :gutter='24'>
+        <a-col :lg='24' :md='24' :sm='24'>
+          <div style='text-align: center;margin-right: 30px;color: #909090'>
+            <a-space size="large">
+              <span>出自：{{poetryData.origin}}</span>
+              <span>作者：{{poetryData.author}}</span>
+              <span>类型：{{poetryData.category}}</span>
+            </a-space>
+          </div>
+        </a-col>
+      </a-row>
     </a-card>
   </page-header-wrapper>
 </template>
 
 <script>
+import {getAction} from '@/api/httpManager.js'
 import {timeFix} from '@/utils/util'
 import {mapState} from 'vuex'
 import {PageHeaderWrapper} from '@ant-design-vue/pro-layout'
@@ -61,17 +73,24 @@ export default {
     return {
       timeFix: timeFix(),
       user: {},
-
       projects: [],
-      loading: true,
+      loading: false,
       radarLoading: true,
       activities: [],
       teams: [],
       weekList: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六',],
       today: '',
       passed: '',
-      time: ''
-      // data
+      time: '',
+      url: {
+        poetry: '/api/remote/poetry',
+      },
+      poetryData: {
+        content: "",
+        author: "",
+        origin: "",
+        category: ""
+      }
     }
   },
   computed: {
@@ -99,6 +118,7 @@ export default {
       this.passedPercent(year, today.getMonth() + 1, today.getDate()) * 100
     ).toFixed(2) + '%'
     this.passed = year + '年已经过去了' + passedPercent + '，要加油哦！'
+    this.poetry()
   },
   mounted() {
     let _this = this; // 声明一个变量指向Vue实例this，保证作用域一致
@@ -137,6 +157,18 @@ export default {
       let time = new Date();
       let second = time.getSeconds()
       return time.getHours() + "时" + time.getMinutes() + "分" + (second.toString().length < 2 ? '0' + second : second) + '秒'
+    },
+    poetry() {
+      this.loading = true
+      getAction(this.url.poetry).then((res) => {
+        if(res.code === 200){
+          this.poetryData = res.data
+        }else {
+          this.$message.error(res.message)
+        }
+      }).finally(() => {
+        this.loading = false
+      })
     }
   }
 }

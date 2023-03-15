@@ -11,49 +11,38 @@
               <div id='treeEditor' :style='contentStyleObj'></div>
             </a-col>
           </a-row>
-          <br />
+          <br/>
           <a-row class='form-row' :gutter='24'>
             <a-col :lg='8' :md='12' :sm='24'>
               <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
-                <a-input style="width: 100%" v-model="jsonPath" placeholder="请输入jsonPath表达式" />
+                <a-input style="width: 100%" v-model="jsonPath" placeholder="请输入jsonPath表达式"/>
               </a-form-item>
             </a-col>
             <a-col :lg='4' :md='12' :sm='24'>
-              <div style='text-align: right'>
-                <a-button type="primary" @click='pickTextByPath'>
-                  获取结果
-                </a-button>
-              </div>
+              <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
+                <div style='text-align: right'>
+                  <a-button type="primary" @click='pickTextByPath'>
+                    获取结果
+                  </a-button>
+                </div>
+              </a-form-item>
             </a-col>
             <a-col :lg='12' :md='12' :sm='24'>
               <div style='text-align: right'>
-                <a-button @click='onCopy'>
-                  {{ $t('text.character-conversion.copy') }}
-                </a-button>
-                <a-button @click='reset' style='margin-left: 8px' type='danger'>
-                  {{ $t('text.character-conversion.reset') }}
-                </a-button>
+                <a-space>
+                  <a-button @click='onCopy'>
+                    {{ $t('text.character-conversion.copy') }}
+                  </a-button>
+                  <a-button @click='reset' type='danger'>
+                    {{ $t('text.character-conversion.reset') }}
+                  </a-button>
+                </a-space>
               </div>
             </a-col>
           </a-row>
         </a-form>
       </a-spin>
     </a-card>
-<!--    <a-card style='margin-top: 20px' :bordered='false'>-->
-<!--      <a-descriptions>-->
-<!--        <a-descriptions-item label='JSON' :span='3'>-->
-<!--          {{ $t('text.json-editor.jsonDesc') }}-->
-<!--          <a href='https://baike.baidu.com/item/JSON/2462549?fr=aladdin' target='_blank'>-->
-<!--            {{ $t('menu.clickToView')}}-->
-<!--          </a>-->
-<!--        </a-descriptions-item>-->
-<!--        <a-descriptions-item label='Github' :span='3'>-->
-<!--          <a href='https://github.com/josdejong/jsoneditorhttps://github.com/josdejong/jsoneditor' target='_blank'>-->
-<!--            JSON Editor-->
-<!--          </a>-->
-<!--        </a-descriptions-item>-->
-<!--      </a-descriptions>-->
-<!--    </a-card>-->
   </page-header-wrapper>
 </template>
 
@@ -79,7 +68,7 @@ export default {
       treeEditor: null,
       syncData: true,
       url: {
-        pickTextByPath:'/api/text/pickTextByPath',
+        pickTextByPath: '/api/text/pickTextByPath',
       },
       jsonPath: ''
     }
@@ -100,7 +89,7 @@ export default {
       'Boolean': true,
       'Null': null,
       'Number': 123,
-      'Object': { 'a': 'b', 'c': 'd' },
+      'Object': {'a': 'b', 'c': 'd'},
       'String': 'Hello World'
     }
     let treeOptions = {
@@ -160,7 +149,7 @@ export default {
     getHeight() {
       this.contentStyleObj.height = window.innerHeight - 300 + 'px'
     },
-    pickTextByPath(){
+    pickTextByPath() {
       this.confirmLoading = true
       postAction(
         this.url.pickTextByPath,
@@ -170,17 +159,17 @@ export default {
           path: this.jsonPath
         }
       ).then((res) => {
-        if(res.success){
+        if (res.success) {
           this.$dialog(TaskForm,
             // component props
             {
               record: res.data,
               on: {
-                ok () {
+                ok() {
                 },
-                cancel () {
+                cancel() {
                 },
-                close () {
+                close() {
                 }
               }
             },
@@ -191,7 +180,7 @@ export default {
               centered: true,
               maskClosable: false
             })
-        }else {
+        } else {
           this.$message.error(res.message)
         }
       }).finally(() => {
