@@ -85,12 +85,12 @@ export default {
     let treeEditorElement = document.getElementById('treeEditor')
     let codeEditorElement = document.getElementById('codeEditor')
     let json = {
+      'String': '姜伟的工具箱',
       'Array': [1, 2, 3],
       'Boolean': true,
       'Null': null,
       'Number': 123,
-      'Object': {'a': 'b', 'c': 'd'},
-      'String': 'Hello World'
+      'Object': {'name': 'Jack', 'region': 'Beijing'}
     }
     let treeOptions = {
       mode: 'tree',
