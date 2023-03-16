@@ -10,7 +10,7 @@ vue + ant design
 
 #### 安装教程
 
-npm -install
+npm install --legacy-peer-deps
 
 #### 使用说明
 

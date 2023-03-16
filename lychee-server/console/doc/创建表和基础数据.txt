@@ -1,0 +1,61 @@
+-- ----------------------------
+-- Table structure for t_user
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user`;
+CREATE TABLE `t_user`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
+  `phone` char(11) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '手机号码',
+  `telephone` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '住宅电话',
+  `address` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '联系地址',
+  `enabled` tinyint(1) NULL DEFAULT 1 COMMENT '是否启用',
+  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户名',
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '密码',
+  `userFace` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户头像',
+  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '备注',
+	`create_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+INSERT INTO `t_user`(`name`, `phone`, `telephone`, `enabled`,`username`,`password`,`create_time`,`update_time`) VALUES ('系统管理员', '00000000000','00000000000',1,'admin','$2a$10$ogvUqZZAxrBwrmVI/e7.SuFYyx8my8d.9zJ6bs9lPKWvbD9eefyCe', NOW(), NOW());
+INSERT INTO `t_user`(`name`, `phone`, `telephone`, `enabled`,`username`,`password`,`create_time`,`update_time`) VALUES ('测试用户', '00000000000','00000000000',1,'test','$2a$10$ogvUqZZAxrBwrmVI/e7.SuFYyx8my8d.9zJ6bs9lPKWvbD9eefyCe', NOW(), NOW());
+
+-- ----------------------------
+-- Table structure for t_role
+-- ----------------------------
+DROP TABLE IF EXISTS `t_role`;
+CREATE TABLE `t_role`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `role_code` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '名称',
+  `role_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '角色名称',
+	`description` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '角色描述',
+	`create_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '创建人',
+  `create_time` datetime(0) DEFAULT NULL COMMENT '创建时间',
+  `update_by` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '更新人',
+  `update_time` datetime(0) DEFAULT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+INSERT INTO `t_role`(`role_code`, `role_name`, `description`, `create_by`, `create_time`, `update_by`, `update_time`) VALUES ('ROLE_test', '测试角色', '测试角色', '', NOW(), NULL, NOW());
+INSERT INTO `t_role`(`role_code`, `role_name`, `description`, `create_by`, `create_time`, `update_by`, `update_time`) VALUES ('ROLE_admin', '系统管理员', '系统管理员', NULL, NOW(), NULL, NOW());
+
+-- ----------------------------
+-- Table structure for t_user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `t_user_role`;
+CREATE TABLE `t_user_role`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `userId` int(11) NULL DEFAULT NULL COMMENT '用户id',
+  `rid` int(11) NULL DEFAULT NULL COMMENT '权限id',
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `rid`(`rid`) USING BTREE,
+  INDEX `userId`(`userId`) USING BTREE,
+  CONSTRAINT `t_user_role_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `t_user` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
+  CONSTRAINT `t_user_role_ibfk_2` FOREIGN KEY (`rid`) REFERENCES `t_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+INSERT INTO `t_user_role`(`userId`, `rid`) VALUES (1, 2);
+INSERT INTO `t_user_role`(`userId`, `rid`) VALUES (2, 1);
