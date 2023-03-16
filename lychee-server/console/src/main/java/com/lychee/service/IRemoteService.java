@@ -1,6 +1,8 @@
 package com.lychee.service;
 
+import com.lychee.model.param.TranslateParam;
 import com.lychee.model.result.PoetryResult;
+import com.lychee.model.result.TranslateResult;
 
 /**
  * @author jiangwei97@aliyun.com
@@ -9,5 +11,7 @@ import com.lychee.model.result.PoetryResult;
 public interface IRemoteService {
 
     PoetryResult poetry();
+
+    TranslateResult translate(TranslateParam param);
 
 }

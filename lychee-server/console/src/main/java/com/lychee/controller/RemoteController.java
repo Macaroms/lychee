@@ -1,7 +1,9 @@
 package com.lychee.controller;
 
 import com.lychee.model.Result;
+import com.lychee.model.param.TranslateParam;
 import com.lychee.model.result.PoetryResult;
+import com.lychee.model.result.TranslateResult;
 import com.lychee.service.IRemoteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,6 +29,17 @@ public class RemoteController {
     @GetMapping("/poetry")
     public Result<PoetryResult> poetry() {
         return Result.ok(remoteService.poetry());
+    }
+
+    @ApiOperation(value = "翻译", notes = "翻译")
+    @GetMapping("/translate")
+    public Result<TranslateResult> translate(TranslateParam param) {
+        TranslateResult translate = remoteService.translate(param);
+        if(translate == null){
+            return Result.fail(null);
+        } else {
+            return Result.ok(translate);
+        }
     }
 
 }

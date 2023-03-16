@@ -2,11 +2,13 @@ package com.lychee.util;
 
 import org.apache.http.Header;
 import org.apache.http.HttpVersion;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
+import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
@@ -21,6 +23,9 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -30,7 +35,11 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author jiangwei97@aliyun.com
@@ -124,7 +133,12 @@ public class HttpClient {
 
     public String sendGet(String url, Map<String, String> headers, Map<String, String> param) throws IOException,
             URISyntaxException {
-        URI uri = new URI(UrlParser.setQueryParams(url, param));
+        //https://fanyi-api.baidu.com/api/trans/vip/translate?appid=20230317001603256&from=cn&to=en&salt=lychee&sign=5dee6e89a85945379dadecb0c667bd58&q=%25E4%25BD%25A0%25E5%25A5%25BD
+        // URI uri = new URI(UrlParser.setQueryParams(url, param));
+        MultiValueMap<String, String> multiValueMap = new LinkedMultiValueMap<>(
+                param.entrySet().stream().collect(
+                        Collectors.toMap(Map.Entry::getKey, e -> Collections.singletonList(e.getValue()))));
+        URI uri = UriComponentsBuilder.fromUriString(url).queryParams(multiValueMap).build().toUri();
         HttpGet httpget = new HttpGet(uri);
         httpget.setProtocolVersion(HttpVersion.HTTP_1_0);
         headers.put(HTTP.CONN_DIRECTIVE, HTTP.CONN_CLOSE);
