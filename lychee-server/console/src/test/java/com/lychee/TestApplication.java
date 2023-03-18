@@ -18,17 +18,8 @@ import java.util.HashMap;
 @SpringBootApplication
 public class TestApplication {
 
-    @Autowired
-    HttpClient httpClient;
-
     @Test
     public void test() throws IOException, URISyntaxException {
-        String url = "https://api.vore.top/api/IPdata?ip=117.136.12.79";
-        ImmutableMap<String, String> ip = ImmutableMap.of("ip", "117.136.12.79");
-        String s = httpClient.sendGet(url, new HashMap<>(), ip);
-        System.out.println(s);
-
-
     }
 
 }
