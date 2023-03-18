@@ -23,10 +23,8 @@
           <clock ref='clock'></clock>
         </a-card>
       </a-col>
-      <a-col :bordered='false' :lg='6' :md='6' :sm='6'>
-        <a-card style='height: 250px;text-align: center'>
-          <div id="he-plugin-standard"></div>
-        </a-card>
+      <a-col :bordered='false' :lg='8' :md='8' :sm='8'>
+        <div id='he-plugin-standard'></div>
       </a-col>
     </a-row>
     <a-card :bordered='false' style='text-align: center;margin-top: 20px' :loading='loading'>
@@ -130,18 +128,18 @@ export default {
     })
     //和风天气插件调用
     window.WIDGET = {
-      "CONFIG": {
-        "layout": "1",
-        "width": 530,
-        "height": 200,
-        "background": "1",
-        "dataColor": "FFFFFF",
-        "language": "zh",
-        "borderRadius": "10",
-        "key": "85d88bfe43e44406afc31cafd88063a0"
+      'CONFIG': {
+        'layout': '1',
+        'width': 570,
+        'height': 250,
+        'background': '1',
+        'dataColor': 'FFFFFF',
+        'language': 'zh',
+        'borderRadius': '5',
+        'key': '85d88bfe43e44406afc31cafd88063a0'
       }
     };
-    (function (d) {
+    (function(d) {
       let c = d.createElement('link')
       c.rel = 'stylesheet'
       let s = d.createElement('script')
@@ -215,6 +213,7 @@ export default {
 .project-list {
   .card-title {
     font-size: 0;
+
     a {
       color: rgba(0, 0, 0, 0.85);
       margin-left: 12px;

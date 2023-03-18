@@ -97,7 +97,7 @@ export const asyncRouterMap = [
         path: '/convert',
         redirect: '/text/character-conversion',
         component: RouteView,
-        meta: { title: 'menu.convert', icon: 'swap', permission: ['convert'] },
+        meta: { title: 'menu.convert', icon: 'retweet', permission: ['convert'] },
         children: [
           {
             path: '/text/character-conversion',
@@ -145,12 +145,12 @@ export const asyncRouterMap = [
           },
         ]
       },
-      // {
-      //   path: '/test/home',
-      //   name: 'test',
-      //   component: () => import('@/views/test/home'),
-      //   meta: { title: 'test', icon: 'robot', permission: ['test'] },
-      // },
+      {
+        path: '/translate',
+        name: 'translate',
+        component: () => import('@/views/translate'),
+        meta: { title: 'menu.translate', icon: 'swap', permission: ['translate'] },
+      },
       // forms
       // {
       //   path: '/form',
