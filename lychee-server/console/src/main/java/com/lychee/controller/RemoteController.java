@@ -7,9 +7,7 @@ import com.lychee.model.result.TranslateResult;
 import com.lychee.service.IRemoteService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -32,8 +30,8 @@ public class RemoteController {
     }
 
     @ApiOperation(value = "翻译", notes = "翻译")
-    @GetMapping("/translate")
-    public Result<TranslateResult> translate(TranslateParam param) {
+    @PostMapping("/translate")
+    public Result<TranslateResult> translate(@RequestBody TranslateParam param) {
         TranslateResult translate = remoteService.translate(param);
         if(translate == null){
             return Result.fail(null);
