@@ -74,12 +74,6 @@ export const asyncRouterMap = [
             meta: { title: 'menu.text.markdown-editor', keepAlive: true, permission: ['text'] }
           },
           {
-            path: '/text/color-picker',
-            name: 'colorPicker',
-            component: () => import('@/views/text/colorPicker'),
-            meta: { title: 'menu.text.color-picker', keepAlive: true, permission: ['text'] }
-          },
-          {
             path: '/text/cron-editor',
             name: 'cronEditor',
             component: () => import('@/views/text/cronEditor'),
@@ -90,6 +84,12 @@ export const asyncRouterMap = [
             name: 'regex',
             component: () => import('@/views/text/regex'),
             meta: { title: 'menu.text.regex', keepAlive: true, permission: ['text'] }
+          },
+          {
+            path: '/text/color-picker',
+            name: 'colorPicker',
+            component: () => import('@/views/text/colorPicker'),
+            meta: { title: 'menu.text.color-picker', keepAlive: true, permission: ['text'] }
           },
         ]
       },

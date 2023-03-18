@@ -101,7 +101,6 @@ export default {
   methods: {
     startClock() {
       this.strips = [...document.querySelectorAll('.strip')]
-      console.log("startClock", this.strips)
       setInterval(() => {
         // get new time
         const time = new Date()
@@ -198,7 +197,7 @@ body {
 .clock {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 8vmin;
+  grid-gap: 7vmin;
   height: 4vmin;
   position: relative;
   padding: 0 4vmin;

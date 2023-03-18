@@ -57,4 +57,5 @@ export default {
   'menu.search': 'Info Search',
   'menu.search.history': 'Today History',
   'menu.search.ipData': 'IP Info',
+  'menu.translate': 'Translate Online',
 }

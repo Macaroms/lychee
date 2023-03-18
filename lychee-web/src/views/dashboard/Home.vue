@@ -17,7 +17,19 @@
         </div>
       </div>
     </template>
-    <a-card :bordered='false' style='text-align: center;margin-top: 20px;margin-bottom: 20px' :loading='loading'>
+    <a-row :gutter='24'>
+      <a-col :bordered='false' :lg='8' :md='8' :sm='8'>
+        <a-card class='clock-card'>
+          <clock ref='clock'></clock>
+        </a-card>
+      </a-col>
+      <a-col :bordered='false' :lg='6' :md='6' :sm='6'>
+        <a-card style='height: 250px;text-align: center'>
+          <div id="he-plugin-standard"></div>
+        </a-card>
+      </a-col>
+    </a-row>
+    <a-card :bordered='false' style='text-align: center;margin-top: 20px' :loading='loading'>
       <a-row class='form-row' :gutter='24'>
         <a-col :lg='2' :md='2' :sm='24'>
           <div style='text-align: left'>
@@ -45,17 +57,6 @@
         </a-col>
       </a-row>
     </a-card>
-    <a-row :gutter='24'>
-      <a-col :bordered='false' :lg='8' :md='8' :sm='8'>
-        <a-card class='clock-card'>
-            <clock ref='clock'></clock>
-        </a-card>
-      </a-col>
-      <a-col :bordered='false' :lg='16' :md='16' :sm='16'>
-        <a-card style='height: 200px;text-align: center'>
-        </a-card>
-      </a-col>
-    </a-row>
   </page-header-wrapper>
 </template>
 
@@ -66,9 +67,6 @@ import { mapState } from 'vuex'
 import { PageHeaderWrapper } from '@ant-design-vue/pro-layout'
 import { Radar } from '@/components'
 import Clock from '@/views/dashboard/components/Clock'
-import pick from 'lodash.pick'
-
-const DataSet = require('@antv/data-set')
 
 export default {
   name: 'Workplace',
@@ -130,6 +128,28 @@ export default {
     this.$nextTick(() => {
       this.startClock()
     })
+    //和风天气插件调用
+    window.WIDGET = {
+      "CONFIG": {
+        "layout": "1",
+        "width": 530,
+        "height": 200,
+        "background": "1",
+        "dataColor": "FFFFFF",
+        "language": "zh",
+        "borderRadius": "10",
+        "key": "85d88bfe43e44406afc31cafd88063a0"
+      }
+    };
+    (function (d) {
+      let c = d.createElement('link')
+      c.rel = 'stylesheet'
+      let s = d.createElement('script')
+      s.src = 'https://widget.qweather.net/standard/static/js/he-standard.js?v=1.4.0'
+      let sn = d.getElementsByTagName('script')[0]
+      sn.parentNode.insertBefore(c, sn)
+      sn.parentNode.insertBefore(s, sn)
+    })(document)
   },
   mounted() {
     let _this = this // 声明一个变量指向Vue实例this，保证作用域一致
@@ -187,9 +207,10 @@ export default {
   }
 }
 </script>
-
 <style lang='less' scoped>
 @import './Workplace.less';
+@import '../../source/css/he-standard.css';
+// @import '../../source/js/he-standard.js';
 
 .project-list {
   .card-title {
@@ -307,7 +328,7 @@ export default {
 }
 
 .clock-card {
-  height: 200px;
+  height: 250px;
   text-align: center;
   overflow: hidden;
   display: flex;
