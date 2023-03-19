@@ -19,15 +19,19 @@
     </template>
     <a-row :gutter='24'>
       <a-col :bordered='false' :lg='8' :md='8' :sm='8'>
-        <a-card class='clock-card'>
+        <a-card class='card-style'>
           <clock ref='clock'></clock>
         </a-card>
       </a-col>
-      <a-col :bordered='false' :lg='8' :md='8' :sm='8'>
+      <a-col style='width: calc(67% - 655px)' :bordered='false' :lg='8' :md='8' :sm='8'>
+        <a-card class='card-style'>
+        </a-card>
+      </a-col>
+      <a-col :bordered='false' :lg='8' :md='8' :sm='8' style='margin-bottom: 20px'>
         <div id='he-plugin-standard'></div>
       </a-col>
     </a-row>
-    <a-card :bordered='false' style='text-align: center;margin-top: 20px' :loading='loading'>
+    <a-card :bordered='false' style='text-align: center' :loading='loading'>
       <a-row class='form-row' :gutter='24'>
         <a-col :lg='2' :md='2' :sm='24'>
           <div style='text-align: left'>
@@ -130,7 +134,7 @@ export default {
     window.WIDGET = {
       'CONFIG': {
         'layout': '1',
-        'width': 570,
+        'width': 620,
         'height': 250,
         'background': '1',
         'dataColor': 'FFFFFF',
@@ -326,14 +330,14 @@ export default {
   }
 }
 
-.clock-card {
+.card-style {
   height: 250px;
   text-align: center;
   overflow: hidden;
   display: flex;
   align-items: center;
   backdrop-filter: blur(5px);
-
+  margin-bottom: 20px
 }
 
 </style>

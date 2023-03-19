@@ -5,6 +5,7 @@ import com.lychee.model.param.CodeSrcParam;
 import com.lychee.model.param.ParseTextParam;
 import com.lychee.model.result.HistoryResult;
 import com.lychee.model.result.IpDataResult;
+import com.lychee.model.result.PickTextResult;
 import com.lychee.model.result.WeatherResult;
 import com.lychee.service.ITextService;
 import io.swagger.annotations.Api;
@@ -57,7 +58,7 @@ public class TextController {
 
     @ApiOperation(value = "提取字符串内容", notes = "提取字符串内容")
     @PostMapping("/pickTextByPath")
-    public Result<String> pickTextByPath(@RequestBody ParseTextParam param) {
+    public Result<PickTextResult> pickTextByPath(@RequestBody ParseTextParam param) {
         return Result.ok(textService.pickTextByPath(param));
     }
 

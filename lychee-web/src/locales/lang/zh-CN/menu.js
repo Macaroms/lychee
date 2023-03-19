@@ -41,7 +41,7 @@ export default {
   'menu.lychee-tools': '姜伟的工具箱',
   'menu.dashboard.machine': '服务监控',
   'menu.clickToView': '点击查看',
-  'menu.text': '文本工具',
+  'menu.text': '文本编辑器',
   'menu.text.character-conversion': '英文字符转换',
   'menu.text.json-editor': 'JSON编辑器',
   'menu.text.markdown-editor': 'Markdown编辑器',

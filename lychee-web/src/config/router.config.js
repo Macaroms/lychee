@@ -62,6 +62,12 @@ export const asyncRouterMap = [
         meta: { title: 'menu.text', icon: 'file-sync', permission: ['text'] },
         children: [
           {
+            path: '/text/xml-editor',
+            name: 'xmlEditor',
+            component: () => import('@/views/text/xmlEditor'),
+            meta: { title: 'menu.text.xml-editor', keepAlive: true, permission: ['text'] }
+          },
+          {
             path: '/text/json-editor',
             name: 'jsonEditor',
             component: () => import('@/views/text/jsonEditor'),
@@ -84,12 +90,6 @@ export const asyncRouterMap = [
             name: 'regex',
             component: () => import('@/views/text/regex'),
             meta: { title: 'menu.text.regex', keepAlive: true, permission: ['text'] }
-          },
-          {
-            path: '/text/color-picker',
-            name: 'colorPicker',
-            component: () => import('@/views/text/colorPicker'),
-            meta: { title: 'menu.text.color-picker', keepAlive: true, permission: ['text'] }
           },
         ]
       },
@@ -122,7 +122,13 @@ export const asyncRouterMap = [
             name: 'enCode',
             component: () => import('@/views/convert/enCode'),
             meta: { title: 'menu.convert.en-code', keepAlive: true, permission: ['convert'] }
-          }
+          },
+          {
+            path: '/text/color-picker',
+            name: 'colorPicker',
+            component: () => import('@/views/text/colorPicker'),
+            meta: { title: 'menu.text.color-picker', keepAlive: true, permission: ['text'] }
+          },
         ]
       },
       {

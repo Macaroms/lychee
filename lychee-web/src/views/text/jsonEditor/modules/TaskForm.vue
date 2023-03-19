@@ -1,16 +1,16 @@
 <template>
-  <a-form :form="form">
-    <a-form-item
-      :labelCol="labelCol"
-      :wrapperCol="wrapperCol"
-    >
-      <a-textarea
-        readonly
-        v-model="jsonText"
-        :rows="15"
-      />
-    </a-form-item>
-  </a-form>
+  <a-spin :spinning='confirmLoading'>
+    <a-form :form='form'>
+      <a-form-item :labelCol='labelCol' :wrapperCol='wrapperCol'>
+        <a-textarea
+          readonly
+          v-model='jsonText'
+          :rows='15'
+        />
+      </a-form-item>
+      <span>提取结果长度：{{ record.size }}</span>
+    </a-form>
+  </a-spin>
 </template>
 
 <script>
@@ -20,11 +20,14 @@ export default {
   name: 'TaskForm',
   props: {
     record: {
-      type: String,
-      default: "{}"
+      type: Object,
+      default: {
+        length: 0,
+        text: ''
+      }
     }
   },
-  data () {
+  data() {
     return {
       labelCol: {
         xs: { span: 24 },
@@ -35,26 +38,29 @@ export default {
         sm: { span: 24 }
       },
       form: this.$form.createForm(this),
-      jsonText: ''
+      confirmLoading: false,
+      jsonText: '',
+      size: 0
     }
   },
-  mounted () {
-    let jsonObj = JSON.parse(this.record)
+  mounted() {
+    this.size = this.record.size
+    let jsonObj = JSON.parse(this.record.text)
     this.jsonText = JSON.stringify(jsonObj, null, 4)
   },
   methods: {
-    onOk () {
+    onOk() {
       this.jsonText = ''
       return new Promise(resolve => {
         resolve(true)
       })
     },
-    onCancel () {
+    onCancel() {
       this.jsonText = ''
       return new Promise(resolve => {
         resolve(true)
       })
-    },
+    }
   }
 }
 </script>

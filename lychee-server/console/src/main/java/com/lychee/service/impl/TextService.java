@@ -1,5 +1,6 @@
 package com.lychee.service.impl;
 
+import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.TypeReference;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -10,23 +11,28 @@ import com.lychee.mapper.TestMapper;
 import com.lychee.model.param.ParseTextParam;
 import com.lychee.model.result.HistoryResult;
 import com.lychee.model.result.IpDataResult;
+import com.lychee.model.result.PickTextResult;
 import com.lychee.model.result.WeatherResult;
 import com.lychee.pojo.TestEntity;
 import com.lychee.service.ITextService;
 import com.lychee.util.HttpClient;
 import org.quartz.TriggerUtils;
 import org.quartz.impl.triggers.CronTriggerImpl;
+import org.seimicrawler.xpath.JXDocument;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author jiangwei97@aliyun.com
@@ -79,18 +85,17 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
     }
 
     @Override
-    public String pickTextByPath(ParseTextParam param) {
+    public PickTextResult pickTextByPath(ParseTextParam param) {
         try {
             if ("json".equalsIgnoreCase(param.getType())) {
                 return jsonPathVal(param.getSrc(), param.getPath());
             } else if ("xml".equalsIgnoreCase(param.getType())) {
-                // TODO
-                return null;
+                return xmlPathVal(param.getSrc(), param.getPath());
             } else {
                 throw new RuntimeException("unknown type");
             }
         } catch (Exception e) {
-            return JSONObject.toJSONString(e.getMessage());
+            return new PickTextResult(0, JSONObject.toJSONString(e.getMessage()));
         }
     }
 
@@ -178,8 +183,21 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
         return request.getRemoteAddr();
     }
 
-    private String jsonPathVal(String src, String jsonPath) {
+    private PickTextResult jsonPathVal(String src, String jsonPath) {
         Object read = JsonPath.read(src, jsonPath);
-        return JSONObject.toJSONString(read);
+        int length;
+        if (read instanceof Collection) {
+            length = ((List<?>) read).size();
+        } else {
+            length = 0;
+        }
+        return new PickTextResult(length, JSONObject.toJSONString(read));
+    }
+
+    private PickTextResult xmlPathVal(String src, String xmlPath) {
+        JXDocument jxDocument = JXDocument.create(src);
+        List<Object> nodes = jxDocument.sel(xmlPath.replace("html", ""));
+        List<String> collect = nodes.stream().map(Object::toString).collect(Collectors.toList());
+        return new PickTextResult(nodes.size(), JSONObject.toJSONString(collect));
     }
 }

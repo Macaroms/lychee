@@ -41,7 +41,7 @@ export default {
   'menu.lychee-tools': 'Jiangwei Blog',
   'menu.dashboard.machine': 'Machine Info',
   'menu.clickToView': 'Click To View',
-  'menu.text': 'Text Tools',
+  'menu.text': 'Text Editor',
   'menu.text.character-conversion': 'Character Conversion',
   'menu.text.json-editor': 'JSON Editor',
   'menu.text.markdown-editor': 'Markdown Editor',

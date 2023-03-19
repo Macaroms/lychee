@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.lychee.model.param.ParseTextParam;
 import com.lychee.model.result.HistoryResult;
 import com.lychee.model.result.IpDataResult;
+import com.lychee.model.result.PickTextResult;
 import com.lychee.model.result.WeatherResult;
 import com.lychee.pojo.TestEntity;
 
@@ -30,7 +31,7 @@ public interface ITextService extends IService<TestEntity> {
 
     String md5Encode(String src);
 
-    String pickTextByPath(ParseTextParam param);
+    PickTextResult pickTextByPath(ParseTextParam param);
 
     IpDataResult ipData(String ip);
 
