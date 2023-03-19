@@ -19,16 +19,6 @@ function getGitHash () {
 
 const isProd = process.env.NODE_ENV === 'production'
 
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin')
-module.exports = {
-  configureWebpack: {
-    plugins: [
-      new MonacoWebpackPlugin()
-    ]
-  }
-}
-
-
 const assetsCDN = {
   // webpack build externals
   externals: {
