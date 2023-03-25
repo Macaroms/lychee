@@ -58,4 +58,5 @@ export default {
   'menu.search.history': '那年今日',
   'menu.search.ipData': 'IP归属地查询',
   'menu.translate': '在线翻译',
+  'menu.map': '在线地图',
 }

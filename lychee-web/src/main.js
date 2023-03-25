@@ -28,7 +28,10 @@ Vue.use(Chat)
 import LemonIMUI from 'lemon-imui';
 import 'lemon-imui/dist/index.css';
 Vue.use(LemonIMUI);
-
+import BaiduMap from 'vue-baidu-map'
+Vue.use(BaiduMap, {
+  ak: 'xw6IN7ODtTBtguM27HbYPHrCnndoUmiN'
+})
 Vue.config.productionTip = false
 
 // mount axios to `Vue.$http` and `this.$http`

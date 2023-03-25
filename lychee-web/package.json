@@ -33,6 +33,7 @@
     "viser-vue": "^2.4.6",
     "vkbeautify": "^0.99.3",
     "vue": "^2.6.14",
+    "vue-baidu-map": "^0.21.22",
     "vue-beautiful-chat": "^2.5.0",
     "vue-clipboard2": "^0.2.1",
     "vue-cropper": "0.4.9",

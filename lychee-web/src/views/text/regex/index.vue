@@ -4,7 +4,7 @@
       <a-spin :spinning='confirmLoading'>
         <a-form :form='form'>
           <a-row class='form-row' :gutter='24'>
-            <a-col :lg='12' :md='12' :sm='24'>
+            <a-col :lg='10' :md='10' :sm='10'>
               <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
                 <a-input
                   addon-before="/"
@@ -15,12 +15,12 @@
                 />
               </a-form-item>
             </a-col>
-            <a-col :lg='7' :md='7' :sm='24'>
+            <a-col :lg='8' :md='8' :sm='8'>
               <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
                 <a-checkbox-group v-model="checkedList" :options="plainOptions" @change="onChange"/>
               </a-form-item>
             </a-col>
-            <a-col :lg='5' :md='5' :sm='24'>
+            <a-col :lg='6' :md='6' :sm='6' style='text-align: right'>
               <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
                 <a-space>
                   <a-button type="primary" icon="reload" @click="getRegex">刷新</a-button>

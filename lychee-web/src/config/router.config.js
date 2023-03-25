@@ -157,6 +157,12 @@ export const asyncRouterMap = [
         component: () => import('@/views/translate'),
         meta: { title: 'menu.translate', icon: 'swap', permission: ['translate'] },
       },
+      {
+        path: '/map',
+        name: 'map',
+        component: () => import('@/views/map'),
+        meta: { title: 'menu.map', icon: 'border-outer', permission: ['map'] },
+      },
       // forms
       // {
       //   path: '/form',
