@@ -3,6 +3,7 @@ package com.lychee.controller;
 import com.lychee.model.Result;
 import com.lychee.model.param.CodeSrcParam;
 import com.lychee.model.param.ParseTextParam;
+import com.lychee.model.param.PropsConvertParam;
 import com.lychee.model.result.HistoryResult;
 import com.lychee.model.result.IpDataResult;
 import com.lychee.model.result.PickTextResult;
@@ -88,6 +89,17 @@ public class TextController {
     @GetMapping("/history")
     public Result<List<HistoryResult>> history() {
         return Result.ok(textService.history());
+    }
+
+    @ApiOperation(value = "yaml和properties互转", notes = "yaml和properties互转")
+    @PostMapping("/propsConvert")
+    public Result<String> propsConvert(@RequestBody PropsConvertParam param) {
+        String result = textService.propsConvert(param);
+        if (result == null) {
+            return Result.fail(null);
+        } else {
+            return Result.ok(result);
+        }
     }
 
 }

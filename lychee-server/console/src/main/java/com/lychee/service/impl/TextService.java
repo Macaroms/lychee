@@ -1,6 +1,5 @@
 package com.lychee.service.impl;
 
-import com.alibaba.fastjson2.JSONArray;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.TypeReference;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -9,6 +8,7 @@ import com.google.common.collect.Lists;
 import com.jayway.jsonpath.JsonPath;
 import com.lychee.mapper.TestMapper;
 import com.lychee.model.param.ParseTextParam;
+import com.lychee.model.param.PropsConvertParam;
 import com.lychee.model.result.HistoryResult;
 import com.lychee.model.result.IpDataResult;
 import com.lychee.model.result.PickTextResult;
@@ -16,6 +16,7 @@ import com.lychee.model.result.WeatherResult;
 import com.lychee.pojo.TestEntity;
 import com.lychee.service.ITextService;
 import com.lychee.util.HttpClient;
+import com.lychee.util.PropertiesUtil;
 import org.quartz.TriggerUtils;
 import org.quartz.impl.triggers.CronTriggerImpl;
 import org.seimicrawler.xpath.JXDocument;
@@ -24,8 +25,6 @@ import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
@@ -50,6 +49,9 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
     @Resource
     private HttpClient httpClient;
 
+    @Resource
+    private PropertiesUtil propertiesUtil;
+
     @Override
     public List<String> getNextExecTime(String cronExpression, Integer numTimes) {
         List<String> list = new ArrayList<>();
@@ -69,8 +71,7 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
 
     @Override
     public String base64Encode(String src) {
-        String result = Base64.getEncoder().encodeToString(src.getBytes(StandardCharsets.UTF_8));
-        return result;
+        return Base64.getEncoder().encodeToString(src.getBytes(StandardCharsets.UTF_8));
     }
 
     @Override
@@ -171,6 +172,19 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
         } catch (IOException | URISyntaxException e) {
             throw new RuntimeException(e.getMessage());
         }
+    }
+
+    @Override
+    public String propsConvert(PropsConvertParam param) {
+        Properties properties;
+        if("yaml".equals(param.getSource())){
+            properties = propertiesUtil.loadYaml(param.getText());
+        } else if ("prop".equals(param.getSource())){
+            properties = propertiesUtil.loadProperties(param.getText());
+        } else {
+            return null;
+        }
+        return propertiesUtil.prop2Target(properties, param.getTarget());
     }
 
     private String userIp(HttpServletRequest request) {
