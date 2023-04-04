@@ -112,6 +112,12 @@ export const asyncRouterMap = [
             meta: { title: 'menu.text.radix-convert', keepAlive: true, permission: ['convert'] }
           },
           {
+            path: '/text/props-convert',
+            name: 'propsConvert',
+            component: () => import('@/views/convert/propsConvert'),
+            meta: { title: 'menu.convert.props-convert', keepAlive: true, permission: ['convert'] }
+          },
+          {
             path: '/convert/rmb-convert',
             name: 'rmbConvert',
             component: () => import('@/views/convert/rmbConvert'),
@@ -162,6 +168,12 @@ export const asyncRouterMap = [
         name: 'map',
         component: () => import('@/views/map'),
         meta: { title: 'menu.map', icon: 'border-outer', permission: ['map'] },
+      },
+      {
+        path: '/more',
+        name: 'more',
+        component: () => import('@/views/more'),
+        meta: { title: 'menu.more', icon: 'dash' },
       },
       // forms
       // {

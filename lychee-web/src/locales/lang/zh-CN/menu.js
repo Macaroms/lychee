@@ -52,6 +52,7 @@ export default {
   'menu.text.xml-editor': 'XML编辑器',
   'menu.convert': '文本转换',
   'menu.convert.rmb-convert': '人民币数字转大写',
+  'menu.convert.props-convert': 'yaml/properties转换',
   'menu.turing-robot': '图灵机器人',
   'menu.convert.en-code': '编码/解码',
   'menu.search': '信息查询',
@@ -59,4 +60,5 @@ export default {
   'menu.search.ipData': 'IP归属地查询',
   'menu.translate': '在线翻译',
   'menu.map': '在线地图',
+  'menu.more': '更多功能',
 }

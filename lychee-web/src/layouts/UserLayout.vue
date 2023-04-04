@@ -9,17 +9,12 @@
         <div class="top">
           <div class="header">
             <a href="/">
-              <img src="~@/assets/logo.svg" class="logo" alt="logo">
-              <span class="title">Ant Design</span>
+              <span class="title">Lychee</span>
             </a>
           </div>
-          <div class="desc">
-            {{ $t('layouts.userLayout.title') }}
-          </div>
         </div>
-
+        <br/>
         <router-view />
-
         <div class="footer">
           <div class="links">
             <a href="_self">帮助</a>
