@@ -99,9 +99,9 @@ export default {
         target = 'prop'
         text = this.yaml
       }
-      this.getText(source, target, text)
+      this.getTargetText(source, target, text)
     },
-    getText(source, target, text) {
+    getTargetText(source, target, text) {
       this.confirmLoading = true
       postAction(
         this.url.propsConvert,
