@@ -61,9 +61,6 @@ export default {
   height: 700px;
 }
 .anchorBL{
-  /*display: none;*/
-}
-.BMap_cpyCtrl {
   display: none;
 }
 </style>

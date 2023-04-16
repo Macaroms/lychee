@@ -52,7 +52,7 @@ export default {
   'menu.text.xml-editor': 'XML Editor',
   'menu.convert': 'Text Convert',
   'menu.convert.rmb-convert': 'RMB To Capital',
-  'menu.convert.props-convert': 'yaml/properties Convert',
+  'menu.convert.props-convert': 'Yaml/Properties Convert',
   'menu.turing-robot': 'Turing Robot',
   'menu.convert.en-code': 'EnCode And DeCode',
   'menu.search': 'Info Search',

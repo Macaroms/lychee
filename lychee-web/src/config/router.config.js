@@ -106,16 +106,16 @@ export const asyncRouterMap = [
             meta: { title: 'menu.text.character-conversion', keepAlive: true, permission: ['convert'] }
           },
           {
-            path: '/text/radix-convert',
-            name: 'radixConvert',
-            component: () => import('@/views/text/radixConvert'),
-            meta: { title: 'menu.text.radix-convert', keepAlive: true, permission: ['convert'] }
-          },
-          {
             path: '/text/props-convert',
             name: 'propsConvert',
             component: () => import('@/views/convert/propsConvert'),
             meta: { title: 'menu.convert.props-convert', keepAlive: true, permission: ['convert'] }
+          },
+          {
+            path: '/text/radix-convert',
+            name: 'radixConvert',
+            component: () => import('@/views/text/radixConvert'),
+            meta: { title: 'menu.text.radix-convert', keepAlive: true, permission: ['convert'] }
           },
           {
             path: '/convert/rmb-convert',

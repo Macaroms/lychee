@@ -1,7 +1,9 @@
 <template>
-  <a-result status="403" sub-title="请登录以使用更多功能">
+  <a-result status="403">
     <template #extra>
-      <a-button type="primary" @click="login">
+      <span style='font-size: x-large'>登录使用更多功能</span>
+      <br/>
+      <a-button type="primary" style='margin-top: 80px' @click="login">
         登录
       </a-button>
       <a-button type="primary" @click="register">
