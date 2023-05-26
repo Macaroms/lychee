@@ -38,7 +38,7 @@ export default {
   'menu.account.logout': 'Logout',
   //------------------
   'sys.placeholder': 'Please enter the content',
-  'menu.lychee-tools': 'Jiangwei Blog',
+  'menu.lychee-tools': 'Jiangwei Toolbox',
   'menu.dashboard.machine': 'Machine Info',
   'menu.clickToView': 'Click To View',
   'menu.text': 'Text Editor',

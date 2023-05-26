@@ -7,6 +7,8 @@
           </a-tab-pane>
           <a-tab-pane key="md5" tab="md5">
           </a-tab-pane>
+          <a-tab-pane key="url" tab="URL">
+          </a-tab-pane>
         </a-tabs>
         <a-form :form='form'>
           <a-form-item
@@ -21,24 +23,32 @@
             />
           </a-form-item>
           <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
-            <a-button v-show="codeType==='base64'" @click='base64Encode' type="primary">
-              编码
-            </a-button>
-            <a-button v-show="codeType==='base64'" @click='base64Decode' style='margin-left: 8px' type="primary">
-              解码
-            </a-button>
-            <a-button v-show="codeType==='md5'" @click='md5Encode' type="primary">
-              编码(32位)
-            </a-button>
-            <a-button v-show="codeType==='md5'" @click='md5Decode' style='margin-left: 8px' type="primary">
-              解码
-            </a-button>
-            <a-button @click='onCopy' style='margin-left: 8px'>
-              {{ $t('text.character-conversion.copy') }}
-            </a-button>
-            <a-button @click='reset' style='margin-left: 8px' type='danger'>
-              {{ $t('text.character-conversion.reset') }}
-            </a-button>
+            <a-space>
+              <a-button v-if="codeType==='base64'" @click='base64Encode' type="primary">
+                编码
+              </a-button>
+              <a-button v-if="codeType==='base64'" @click='base64Decode' type="primary">
+                解码
+              </a-button>
+              <a-button v-if="codeType==='md5'" @click='md5Encode' type="primary">
+                编码(32位)
+              </a-button>
+              <a-button v-if="codeType==='md5'" @click='md5Decode' type="primary">
+                解码
+              </a-button>
+              <a-button v-if="codeType==='url'" @click='uriCoder(0)' type="primary">
+                编码
+              </a-button>
+              <a-button v-if="codeType==='url'" @click='uriCoder(1)' type="primary">
+                解码
+              </a-button>
+              <a-button @click='onCopy'>
+                {{ $t('text.character-conversion.copy') }}
+              </a-button>
+              <a-button @click='reset' type='danger'>
+                {{ $t('text.character-conversion.reset') }}
+              </a-button>
+            </a-space>
           </a-form-item>
           <a-form-item
             :labelCol='labelCol'
@@ -80,6 +90,7 @@ export default {
         base64Encode:'/api/text/base64Encode',
         base64Decode:'/api/text/base64Decode',
         md5Encode:'/api/text/md5Encode',
+        urlCoder:'/api/text/urlCoder',
       }
     }
   },
@@ -154,6 +165,24 @@ export default {
     },
     md5Decode(){
       this.$message.warning("不会解")
+    },
+    uriCoder(type){
+      this.confirmLoading = true
+      postAction(
+        this.url.urlCoder,
+        {
+          src: this.context,
+          type: type
+        }
+      ).then((res) => {
+        if(res.success){
+          this.result = res.data
+        }else {
+          this.$message.error(res.message)
+        }
+      }).finally(() => {
+        this.confirmLoading = false
+      })
     },
   }
 }
