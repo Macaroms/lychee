@@ -9,6 +9,7 @@ import com.jayway.jsonpath.JsonPath;
 import com.lychee.mapper.TestMapper;
 import com.lychee.model.param.ParseTextParam;
 import com.lychee.model.param.PropsConvertParam;
+import com.lychee.model.param.UrlCoderParam;
 import com.lychee.model.result.HistoryResult;
 import com.lychee.model.result.IpDataResult;
 import com.lychee.model.result.PickTextResult;
@@ -26,7 +27,10 @@ import org.springframework.util.DigestUtils;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -177,14 +181,36 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
     @Override
     public String propsConvert(PropsConvertParam param) {
         Properties properties;
-        if("yaml".equals(param.getSource())){
+        if ("yaml".equals(param.getSource())) {
             properties = propertiesUtil.loadYaml(param.getText());
-        } else if ("prop".equals(param.getSource())){
+        } else if ("prop".equals(param.getSource())) {
             properties = propertiesUtil.loadProperties(param.getText());
         } else {
             return null;
         }
         return propertiesUtil.prop2Target(properties, param.getTarget());
+    }
+
+    @Override
+    public String urlCoder(UrlCoderParam param) {
+        String result;
+        Integer type = param.getType();
+        try {
+            switch (type) {
+                case 0:
+                    result = URLEncoder.encode(param.getSrc(), "GBK");
+                    break;
+                case 1:
+                    result = URLDecoder.decode(param.getSrc(), "GBK");
+                    break;
+                default:
+                    result = param.getSrc();
+            }
+        } catch (UnsupportedEncodingException e) {
+            result = param.getSrc();
+            e.printStackTrace();
+        }
+        return result;
     }
 
     private String userIp(HttpServletRequest request) {

@@ -4,6 +4,7 @@ import com.lychee.model.Result;
 import com.lychee.model.param.CodeSrcParam;
 import com.lychee.model.param.ParseTextParam;
 import com.lychee.model.param.PropsConvertParam;
+import com.lychee.model.param.UrlCoderParam;
 import com.lychee.model.result.HistoryResult;
 import com.lychee.model.result.IpDataResult;
 import com.lychee.model.result.PickTextResult;
@@ -100,6 +101,12 @@ public class TextController {
         } else {
             return Result.ok(result);
         }
+    }
+
+    @ApiOperation(value = "url编码/解码", notes = "url编码/解码")
+    @PostMapping("/urlCoder")
+    public Result<String> urlCoder(@RequestBody UrlCoderParam param) {
+        return Result.ok(textService.urlCoder(param));
     }
 
 }

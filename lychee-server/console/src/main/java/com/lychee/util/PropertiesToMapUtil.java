@@ -13,10 +13,10 @@ public class PropertiesToMapUtil {
     /**
      * properties 配置文件转 Map 集合
      */
-    public static Map<String, Object> prop2Map(Properties properties) {
-        Map<String, Object> resultMap = new HashMap<>();
+    public static LinkedHashMap<String, Object> prop2Map(Properties properties) {
+        LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         try {
-            Map<String, Object> propMap = new HashMap<>();
+            LinkedHashMap<String, Object> propMap = new LinkedHashMap<>();
             for (Map.Entry<Object, Object> entry : properties.entrySet()) {
                 propMap.put((String) entry.getKey(), entry.getValue());
             }
@@ -30,8 +30,8 @@ public class PropertiesToMapUtil {
     /**
      * 将propMap 转化为 HashTable结构
      */
-    private static Map<String, Object> parseToMap(Map<String, Object> propMap) {
-        Map<String, Object> resultMap = new Hashtable<>();
+    private static LinkedHashMap<String, Object> parseToMap(Map<String, Object> propMap) {
+        LinkedHashMap<String, Object> resultMap = new LinkedHashMap<>();
         try {
             if (CollectionUtils.isEmpty(propMap)) {
                 return resultMap;
@@ -41,14 +41,14 @@ public class PropertiesToMapUtil {
                 Map.Entry<String, Object> entry = it.next();
                 String key = entry.getKey();
                 Object propValue = entry.getValue();
-                Object resultObj = null;
+                Object resultObj;
                 if (!key.contains(".")) {
                     if (!key.contains("[") && !key.contains("]")) {
                         resultMap.put(key, propValue);
                     } else if (key.contains("[") && key.contains("]")) {
                         key = key.substring(0, key.lastIndexOf("["));
                         resultObj = resultMap.get(key);
-                        List<String> list = null;
+                        List<String> list;
                         if (resultObj != null) {
                             list = (List<String>) resultObj;
                         } else {
@@ -60,8 +60,8 @@ public class PropertiesToMapUtil {
                     it.remove();
                 } else {
                     String currentKey = key.substring(0, key.indexOf("."));
-                    Map<String, Object> childMap = getChildMap(propMap, currentKey);
-                    Map<String, Object> map = parseToMap(childMap);
+                    LinkedHashMap<String, Object> childMap = getChildMap(propMap, currentKey);
+                    LinkedHashMap<String, Object> map = parseToMap(childMap);
                     resultMap.put(currentKey, map);
                 }
             }
@@ -74,8 +74,8 @@ public class PropertiesToMapUtil {
     /**
      * 获取拥有相同父级节点的子节点
      */
-    private static Map<String, Object> getChildMap(Map<String, Object> propMap, String currentKey) {
-        Map<String, Object> childMap = new Hashtable<>();
+    private static LinkedHashMap<String, Object> getChildMap(Map<String, Object> propMap, String currentKey) {
+        LinkedHashMap<String, Object> childMap = new LinkedHashMap<>();
         try {
             for (Map.Entry<String, Object> entry : propMap.entrySet()) {
                 String key = entry.getKey();
