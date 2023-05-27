@@ -22,7 +22,7 @@
             <a href="_self">条款</a>
           </div>
           <div class="copyright">
-            Copyright &copy; 2018 vueComponent
+            <a href="https://beian.miit.gov.cn/" target="_blank">Copyright © 2022.  京ICP备2022010440号</a>
           </div>
         </div>
       </div>

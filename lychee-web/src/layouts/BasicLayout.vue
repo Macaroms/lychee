@@ -28,18 +28,18 @@
     <!-- 1.0.0+ 版本 pro-layout 提供 API,
           增加 Header 左侧内容区自定义
     -->
-<!--    <template v-slot:headerContentRender>-->
-<!--      <div>-->
-<!--        <a-tooltip title="刷新页面">-->
-<!--          <a-icon type="reload" style="font-size: 18px;cursor: pointer;" @click="() => { $message.info('只是一个DEMO') }" />-->
-<!--        </a-tooltip>-->
-<!--      </div>-->
-<!--    </template>-->
+    <template v-slot:headerContentRender>
+      <div>
+        <a-tooltip title="刷新页面">
+          <a-icon type="reload" style="font-size: 18px;cursor: pointer;" @click="() => { $message.info('只是一个DEMO') }" />
+        </a-tooltip>
+      </div>
+    </template>
 
     <setting-drawer v-if="isDev" :settings="settings" @change="handleSettingChange">
-      <div style="margin: 12px 0;">
-        This is SettingDrawer custom footer content.
-      </div>
+<!--      <div style="margin: 12px 0;">-->
+<!--        This is SettingDrawer custom footer content.-->
+<!--      </div>-->
     </setting-drawer>
     <template v-slot:rightContentRender>
       <right-content :top-menu="settings.layout === 'topmenu'" :is-mobile="isMobile" :theme="settings.theme" />
@@ -80,8 +80,7 @@ export default {
       isProPreviewSite: process.env.VUE_APP_PREVIEW === 'true' && process.env.NODE_ENV !== 'development',
       // end
       // isDev: process.env.NODE_ENV === 'development' || process.env.VUE_APP_PREVIEW === 'true',
-      isDev: true,
-
+      isDev: false,
       // base
       menus: [],
       // 侧栏收起状态
@@ -120,7 +119,6 @@ export default {
     // const routes = this.mainMenu.find(item => item.path === '/')
     const routes = asyncRouterMap.find(item => item.path === '/')
     this.menus = (routes && routes.children) || []
-    this.collapsed = !this.sidebarOpened
     // 处理侧栏收起状态
     this.$watch('collapsed', () => {
       this.$store.commit(SIDEBAR_TYPE, this.collapsed)
@@ -139,7 +137,6 @@ export default {
         }, 16)
       })
     }
-
     // first update color
     // TIPS: THEME COLOR HANDLER!! PLEASE CHECK THAT!!
     if (process.env.NODE_ENV !== 'production' || process.env.VUE_APP_PREVIEW === 'true') {
@@ -165,7 +162,6 @@ export default {
       this.collapsed = val
     },
     handleSettingChange ({ type, value }) {
-      console.log('type', type, value)
       type && (this.settings[type] = value)
       switch (type) {
         case 'contentWidth':

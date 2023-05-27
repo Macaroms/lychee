@@ -53,7 +53,7 @@
         </a-row>
         <a-form-item :labelCol='labelCol' :wrapperCol='wrapperCol'>
           <a-textarea
-            :rows='8'
+            :rows='12'
             :placeholder="$t('sys.placeholder')"
             v-model='context'
             allow-clear
@@ -62,7 +62,7 @@
         <a-spin :spinning='confirmLoading'>
           <a-form-item :labelCol='labelCol' :wrapperCol='wrapperCol'>
             <a-textarea
-              :rows='8'
+              :rows='12'
               v-model='result'
               readOnly
             />

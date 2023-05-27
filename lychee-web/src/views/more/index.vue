@@ -1,5 +1,5 @@
 <template>
-  <a-result status="403">
+  <a-result status="403"  style='margin-top: 100px'>
     <template #extra>
       <span style='font-size: x-large'>登录使用更多功能</span>
       <br/>

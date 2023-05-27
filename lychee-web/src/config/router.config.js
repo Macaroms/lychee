@@ -97,7 +97,7 @@ export const asyncRouterMap = [
         path: '/convert',
         redirect: '/text/character-conversion',
         component: RouteView,
-        meta: { title: 'menu.convert', icon: 'retweet', permission: ['convert'] },
+        meta: { title: 'menu.convert', icon: 'swap', permission: ['convert'] },
         children: [
           {
             path: '/text/character-conversion',
@@ -133,7 +133,7 @@ export const asyncRouterMap = [
             path: '/text/color-picker',
             name: 'colorPicker',
             component: () => import('@/views/text/colorPicker'),
-            meta: { title: 'menu.text.color-picker', keepAlive: true, permission: ['text'] }
+            meta: { title: 'menu.text.color-picker', keepAlive: true, permission: ['convert'] }
           },
         ]
       },
@@ -141,7 +141,7 @@ export const asyncRouterMap = [
         path: '/search',
         redirect: '/search/ipData',
         component: RouteView,
-        meta: { title: 'menu.search', icon: 'search', permission: ['convert'] },
+        meta: { title: 'menu.search', icon: 'search', permission: ['search'] },
         children: [
           {
             path: '/search/ipData',
@@ -158,22 +158,30 @@ export const asyncRouterMap = [
         ]
       },
       {
-        path: '/translate',
-        name: 'translate',
-        component: () => import('@/views/translate'),
-        meta: { title: 'menu.translate', icon: 'swap', permission: ['translate'] },
-      },
-      {
-        path: '/map',
-        name: 'map',
-        component: () => import('@/views/map'),
-        meta: { title: 'menu.map', icon: 'border-outer', permission: ['map'] },
+        path: '/third',
+        redirect: '/translate',
+        component: RouteView,
+        meta: { title: 'menu.third', icon: 'border-outer', permission: ['third'] },
+        children: [
+          {
+            path: '/translate',
+            name: 'translate',
+            component: () => import('@/views/translate'),
+            meta: { title: 'menu.translate', keepAlive: true, permission: ['third'] },
+          },
+          {
+            path: '/map',
+            name: 'map',
+            component: () => import('@/views/map'),
+            meta: { title: 'menu.map', keepAlive: true, permission: ['third'] },
+          },
+        ]
       },
       {
         path: '/more',
         name: 'more',
         component: () => import('@/views/more'),
-        meta: { title: 'menu.more', icon: 'dash' },
+        meta: { title: 'menu.more', icon: 'bars' },
       },
       // forms
       // {

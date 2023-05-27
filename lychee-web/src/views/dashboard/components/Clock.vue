@@ -197,7 +197,7 @@ body {
 .clock {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 6vmin;
+  grid-gap: 8vmin;
   height: 4vmin;
   position: relative;
   padding: 0 4vmin;

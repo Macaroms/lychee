@@ -58,7 +58,7 @@ export default {
 <style>
 .bm-view {
   width: 100%;
-  height: 700px;
+  height: 680px;
 }
 .anchorBL{
   display: none;

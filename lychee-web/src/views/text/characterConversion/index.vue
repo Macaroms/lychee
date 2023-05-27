@@ -1,5 +1,5 @@
 <template>
-  <page-header-wrapper :title='false' :content="$t('text.character-conversion.description')">
+  <page-header-wrapper :title='false'>
     <a-card :body-style="{padding: '24px 32px'}" :bordered='false'>
       <a-spin :spinning='confirmLoading'>
         <a-divider orientation='left'>{{ $t('menu.text.character-conversion') }}</a-divider>
@@ -9,7 +9,7 @@
             :wrapperCol='wrapperCol'
           >
             <a-textarea
-              :rows='8'
+              :rows='18'
               :placeholder="$t('sys.placeholder')"
               v-model='context'
               allow-clear

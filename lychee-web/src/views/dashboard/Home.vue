@@ -23,7 +23,7 @@
           <clock ref='clock'></clock>
         </a-card>
       </a-col>
-      <a-col style='width: calc(67% - 655px)' :bordered='false' :lg='8' :md='8' :sm='8'>
+      <a-col style='width: calc(66% - 670px)' :bordered='false' :lg='8' :md='8' :sm='8'>
         <a-card class='card-style'>
         </a-card>
       </a-col>
@@ -134,7 +134,7 @@ export default {
     window.WIDGET = {
       'CONFIG': {
         'layout': '1',
-        'width': 620,
+        'width': 660,
         'height': 250,
         'background': '1',
         'dataColor': 'FFFFFF',

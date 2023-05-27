@@ -93,36 +93,36 @@
                   <template slot="title">
                     该设定仅 [顶部栏导航] 时有效
                   </template>
-                  <a-select size="small" style="width: 80px;" :defaultValue="contentWidth" @change="handleContentWidthChange">
+                  <a-select size="small" :defaultValue="contentWidth" @change="handleContentWidthChange">
                     <a-select-option value="Fixed">固定</a-select-option>
                     <a-select-option value="Fluid" v-if="layoutMode !== 'sidemenu'">流式</a-select-option>
                   </a-select>
                 </a-tooltip>
                 <a-list-item-meta>
-                  <div slot="title">内容区域宽度</div>
+                  <div slot="title">内容区域宽度a</div>
                 </a-list-item-meta>
               </a-list-item>
-              <a-list-item>
-                <a-switch slot="actions" size="small" :defaultChecked="fixedHeader" @change="handleFixedHeader" />
-                <a-list-item-meta>
-                  <div slot="title">固定 Header</div>
-                </a-list-item-meta>
-              </a-list-item>
-              <a-list-item>
-                <a-switch slot="actions" size="small" :disabled="!fixedHeader" :defaultChecked="autoHideHeader" @change="handleFixedHeaderHidden" />
-                <a-list-item-meta>
-                  <a-tooltip slot="title" placement="left">
-                    <template slot="title">固定 Header 时可配置</template>
-                    <div :style="{ opacity: !fixedHeader ? '0.5' : '1' }">下滑时隐藏 Header</div>
-                  </a-tooltip>
-                </a-list-item-meta>
-              </a-list-item>
-              <a-list-item >
-                <a-switch slot="actions" size="small" :disabled="(layoutMode === 'topmenu')" :defaultChecked="fixSiderbar" @change="handleFixSiderbar" />
-                <a-list-item-meta>
-                  <div slot="title" :style="{ textDecoration: layoutMode === 'topmenu' ? 'line-through' : 'unset' }">固定侧边菜单</div>
-                </a-list-item-meta>
-              </a-list-item>
+<!--              <a-list-item>-->
+<!--                <a-switch slot="actions" size="small" :defaultChecked="fixedHeader" @change="handleFixedHeader" />-->
+<!--                <a-list-item-meta>-->
+<!--                  <div slot="title">固定 Header</div>-->
+<!--                </a-list-item-meta>-->
+<!--              </a-list-item>-->
+<!--              <a-list-item>-->
+<!--                <a-switch slot="actions" size="small" :disabled="!fixedHeader" :defaultChecked="autoHideHeader" @change="handleFixedHeaderHidden" />-->
+<!--                <a-list-item-meta>-->
+<!--                  <a-tooltip slot="title" placement="left">-->
+<!--                    <template slot="title">固定 Header 时可配置</template>-->
+<!--                    <div :style="{ opacity: !fixedHeader ? '0.5' : '1' }">下滑时隐藏 Header</div>-->
+<!--                  </a-tooltip>-->
+<!--                </a-list-item-meta>-->
+<!--              </a-list-item>-->
+<!--              <a-list-item >-->
+<!--                <a-switch slot="actions" size="small" :disabled="(layoutMode === 'topmenu')" :defaultChecked="fixSiderbar" @change="handleFixSiderbar" />-->
+<!--                <a-list-item-meta>-->
+<!--                  <div slot="title" :style="{ textDecoration: layoutMode === 'topmenu' ? 'line-through' : 'unset' }">固定侧边菜单</div>-->
+<!--                </a-list-item-meta>-->
+<!--              </a-list-item>-->
             </a-list>
           </div>
         </div>
@@ -148,19 +148,19 @@
           </div>
         </div>
         <a-divider />
-        <div :style="{ marginBottom: '24px' }">
-          <a-button
-            @click="doCopy"
-            icon="copy"
-            block
-          >拷贝设置</a-button>
-          <a-alert type="warning" :style="{ marginTop: '24px' }">
-            <span slot="message">
-              配置栏只在开发环境用于预览，生产环境不会展现，请手动修改配置文件。修改配置文件后，需要清空本地缓存和LocalStorage
-              <a href="https://github.com/sendya/ant-design-pro-vue/blob/master/src/config/defaultSettings.js" target="_blank">src/config/defaultSettings.js</a>
-            </span>
-          </a-alert>
-        </div>
+<!--        <div :style="{ marginBottom: '24px' }">-->
+<!--          <a-button-->
+<!--            @click="doCopy"-->
+<!--            icon="copy"-->
+<!--            block-->
+<!--          >拷贝设置</a-button>-->
+<!--          <a-alert type="warning" :style="{ marginTop: '24px' }">-->
+<!--            <span slot="message">-->
+<!--              配置栏只在开发环境用于预览，生产环境不会展现，请手动修改配置文件。修改配置文件后，需要清空本地缓存和LocalStorage-->
+<!--              <a href="https://github.com/sendya/ant-design-pro-vue/blob/master/src/config/defaultSettings.js" target="_blank">src/config/defaultSettings.js</a>-->
+<!--            </span>-->
+<!--          </a-alert>-->
+<!--        </div>-->
       </div>
       <div class="setting-drawer-index-handle" @click="toggle" slot="handle">
         <a-icon type="setting" v-if="!visible"/>

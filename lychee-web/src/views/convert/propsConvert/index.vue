@@ -11,14 +11,14 @@
                 :wrapperCol='wrapperCol'
               >
                 <a-textarea
-                  :rows='20'
+                  :rows='26'
                   placeholder='请输入Properties'
                   v-model='properties'
                   allow-clear
                 />
               </a-form-item>
             </a-col>
-            <a-col :lg='2' :md='2' :sm='2' style='text-align: center;margin-top: 200px'>
+            <a-col :lg='2' :md='2' :sm='2' style='text-align: center;margin-top: 260px'>
               <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
                 <a-button @click='convert(0)' type='primary'>
                   转换&gt;&gt;
@@ -37,7 +37,7 @@
                 :wrapperCol='wrapperCol'
               >
                 <a-textarea
-                  :rows='20'
+                  :rows='26'
                   placeholder='请输入Yaml'
                   v-model='yaml'
                   allow-clear

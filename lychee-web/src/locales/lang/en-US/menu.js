@@ -61,4 +61,5 @@ export default {
   'menu.translate': 'Translate Online',
   'menu.map': 'Map Online',
   'menu.more': 'More',
+  'menu.third': 'Third Party Tools',
 }

@@ -61,4 +61,5 @@ export default {
   'menu.translate': '在线翻译',
   'menu.map': '在线地图',
   'menu.more': '更多功能',
+  'menu.third': '第三方工具',
 }

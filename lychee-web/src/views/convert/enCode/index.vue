@@ -16,7 +16,7 @@
             :wrapperCol='wrapperCol'
           >
             <a-textarea
-              :rows='8'
+              :rows='10'
               :placeholder="$t('sys.placeholder')"
               v-model='context'
               allow-clear
@@ -55,7 +55,7 @@
             :wrapperCol='wrapperCol'
           >
             <a-textarea
-              :rows='8'
+              :rows='10'
               v-model='result'
               readonly="true"
             />
