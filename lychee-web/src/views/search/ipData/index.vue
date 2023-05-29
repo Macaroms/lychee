@@ -8,9 +8,9 @@
             <a-col :lg='12' :md='12' :sm='24'>
               <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
                 <a-input
-                  style="width: 100%"
-                  v-model="ip"
-                  placeholder="请输入IP地址"
+                  style='width: 100%'
+                  v-model='ip'
+                  placeholder='请输入IP地址'
                 />
               </a-form-item>
             </a-col>
@@ -18,30 +18,33 @@
           <a-row class='form-row' :gutter='24'>
             <a-col :lg='24' :md='12' :sm='24'>
               <a-space>
-                <a-button type="primary" icon="copy" @click="search">查询</a-button>
-                <a-button type="danger" icon="delete" @click="reset">清空</a-button>
+                <a-button type='primary' icon='copy' @click='search'>查询</a-button>
+                <a-button type='danger' icon='delete' @click='reset'>清空</a-button>
               </a-space>
             </a-col>
           </a-row>
         </a-form>
       </a-spin>
     </a-card>
-    <a-card v-show="show" style='margin-top: 20px' :bordered='false' :loading="loading">
-      <a-descriptions title="查询结果">
+    <a-card v-show='show' style='margin-top: 20px' :bordered='false' :loading='loading'>
+      <a-descriptions bordered title="查询结果">
         <a-descriptions-item label="IP">
-          {{result.text}}
+          {{ result.query }}
         </a-descriptions-item>
-        <a-descriptions-item label="地区">
-          {{result.region}}
+        <a-descriptions-item label="地区" span='2'>
+          {{ result.country }} - {{ result.regionName }} - {{ result.city }}
         </a-descriptions-item>
-        <a-descriptions-item label="地区编码">
-          {{result.areaCode}}
+        <a-descriptions-item label="时区">
+          {{ result.timezone }}
         </a-descriptions-item>
-        <a-descriptions-item label="类型">
-          {{result.type}}
+        <a-descriptions-item label="位置" span='2'>
+          经度：{{ result.lon }}， 纬度：{{ result.lat }}
         </a-descriptions-item>
-        <a-descriptions-item label="归属">
-          {{result.owner}}
+        <a-descriptions-item label="组织">
+          {{ result.org }}
+        </a-descriptions-item>
+        <a-descriptions-item label="归属" span='2'>
+          {{ result.as }}
         </a-descriptions-item>
       </a-descriptions>
     </a-card>
@@ -49,7 +52,7 @@
 </template>
 
 <script>
-import {getAction} from '@/api/httpManager.js'
+import { getAction } from '@/api/httpManager.js'
 
 export default {
   name: 'IpData',
@@ -60,9 +63,21 @@ export default {
       loading: false,
       ip: '',
       url: {
-        ipData:'/api/text/ipData',
+        ipData: '/api/search/ipSearch'
       },
-      result: {},
+      result: {
+        query: '',
+        country: '',
+        countryCode: '',
+        regionName: '',
+        region: '',
+        city: '',
+        lon: '',
+        lat: '',
+        timezone: '',
+        as: '',
+        org: '',
+      },
       show: false
     }
   },
@@ -76,17 +91,17 @@ export default {
     reset() {
       this.ip = ''
     },
-    search(){
-      if (!this.ip || this.ip.length === 0){
-        this.$message.warning("请输入IP地址")
+    search() {
+      if (!this.ip || this.ip.length === 0) {
+        this.$message.warning('请输入IP地址')
         return
       }
       this.show = true
       this.loading = true
-      getAction(this.url.ipData, {ip: this.ip}).then((res) => {
-        if(res.code === 200){
+      getAction(this.url.ipData, { ip: this.ip }).then((res) => {
+        if (res.code === 200) {
           this.result = res.data
-        }else {
+        } else {
           this.show = false
           this.$message.error(res.message)
         }

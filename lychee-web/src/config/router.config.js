@@ -144,16 +144,22 @@ export const asyncRouterMap = [
         meta: { title: 'menu.search', icon: 'search', permission: ['search'] },
         children: [
           {
+            path: '/search/history',
+            name: 'history',
+            component: () => import('@/views/search/history'),
+            meta: { title: 'menu.search.history', keepAlive: true, permission: ['search'] }
+          },
+          {
             path: '/search/ipData',
             name: 'ipData',
             component: () => import('@/views/search/ipData'),
             meta: { title: 'menu.search.ipData', keepAlive: true, permission: ['search'] }
           },
           {
-            path: '/search/history',
-            name: 'history',
-            component: () => import('@/views/search/history'),
-            meta: { title: 'menu.search.history', keepAlive: true, permission: ['search'] }
+            path: '/search/rubbishClassify',
+            name: 'rubbishClassify',
+            component: () => import('@/views/search/rubbishClassify'),
+            meta: { title: 'menu.search.rubbish-classify', keepAlive: true, permission: ['search'] }
           },
         ]
       },
