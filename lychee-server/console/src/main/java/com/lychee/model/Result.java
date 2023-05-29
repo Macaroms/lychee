@@ -80,7 +80,7 @@ public class Result<T> implements Serializable {
     }
 
     public static<T> Result<T> fail(T data){
-        return new Result<>(ResultCodeEnum.ERROR);
+        return new Result<>(ResultCodeEnum.ERROR, data);
     }
 
 

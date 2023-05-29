@@ -164,7 +164,7 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
         try {
             String result = httpClient.sendGet(url, new HashMap<>(), new HashMap<>());
             JSONObject resultObject = JSONObject.parseObject(result);
-            if ("200".equals(resultObject.get("code").toString())) {
+            if (resultObject!=null && "200".equals(resultObject.get("code").toString())) {
                 return JSONObject.parseObject(
                         resultObject.get("data").toString(),
                         new TypeReference<List<HistoryResult>>() {
