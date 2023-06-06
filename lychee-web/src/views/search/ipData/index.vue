@@ -18,6 +18,7 @@
           <a-row class='form-row' :gutter='24'>
             <a-col :lg='24' :md='12' :sm='24'>
               <a-space>
+                <a-button type='primary' icon='search' @click='myIp'>查看我的IP</a-button>
                 <a-button type='primary' icon='copy' @click='search'>查询</a-button>
                 <a-button type='danger' icon='delete' @click='reset'>清空</a-button>
               </a-space>
@@ -63,7 +64,8 @@ export default {
       loading: false,
       ip: '',
       url: {
-        ipData: '/api/search/ipSearch'
+        ipData: '/api/search/ipSearch',
+        originIp: '/api/text/originIp',
       },
       result: {
         query: '',
@@ -107,6 +109,17 @@ export default {
         }
       }).finally(() => {
         this.loading = false
+      })
+    },
+    myIp() {
+      getAction(this.url.originIp ).then((res) => {
+        if (res.code === 200) {
+          this.ip = res.data
+          this.search()
+        } else {
+          this.show = false
+          this.$message.error(res.message)
+        }
       })
     }
 

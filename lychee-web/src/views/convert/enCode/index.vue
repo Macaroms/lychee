@@ -26,10 +26,10 @@
           </a-form-item>
           <a-form-item :wrapper-col='{ span: 24, offset: 0 }'>
             <a-space v-if="codeType==='base64'">
-              <a-button @click='base64Encode' type='primary'>
+              <a-button @click='base64Coder(0)' type='primary'>
                 编码
               </a-button>
-              <a-button @click='base64Decode' type='primary'>
+              <a-button @click='base64Coder(1)' type='primary'>
                 解码
               </a-button>
             </a-space>
@@ -116,6 +116,7 @@ export default {
       url: {
         base64Encode: '/api/text/base64Encode',
         base64Decode: '/api/text/base64Decode',
+        base64Code: '/api/text/base64Coder',
         md5Encode: '/api/text/md5Encode',
         urlCoder: '/api/text/urlCoder',
         unicode: '/api/text/unicode'
@@ -219,6 +220,24 @@ export default {
       this.confirmLoading = true
       postAction(
         this.url.unicode,
+        {
+          src: this.context,
+          type: type
+        }
+      ).then((res) => {
+        if (res.success) {
+          this.result = res.data
+        } else {
+          this.$message.error(res.message)
+        }
+      }).finally(() => {
+        this.confirmLoading = false
+      })
+    },
+    base64Coder(type) {
+      this.confirmLoading = true
+      postAction(
+        this.url.base64Code,
         {
           src: this.context,
           type: type
