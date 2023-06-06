@@ -96,5 +96,7 @@ jwt:
   tokenHead: Bearer
 
 baidu:
-  appid:
-  key:
+  appid: 20230317001603256
+  key: py9hhnd7xOqKhBO0Hz9X
+txapi:
+  token: wLwT5lwMlE4&name=

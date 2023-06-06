@@ -1,14 +1,11 @@
 package com.lychee;
 
-import com.google.common.collect.ImmutableMap;
-import com.lychee.util.HttpClient;
+import com.lychee.util.PropertiesUtil;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.HashMap;
+import javax.annotation.Resource;
+import java.util.Properties;
 
 /**
  * @author jiangwei97@aliyun.com
@@ -18,8 +15,19 @@ import java.util.HashMap;
 @SpringBootApplication
 public class TestApplication {
 
+    @Resource
+    PropertiesUtil propertiesUtil;
+
     @Test
-    public void test() throws IOException, URISyntaxException {
+    public void test() {
+        String str = "server.servlet.context-path=/api\n" +
+                "server.port=8081\n" +
+                "\n" +
+                "spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver";
+        Properties properties = propertiesUtil.loadYaml(str);
+        String s = propertiesUtil.prop2Target(properties, "prop");
+        System.out.println(s);
+
     }
 
 }
