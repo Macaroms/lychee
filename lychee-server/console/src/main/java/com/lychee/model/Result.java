@@ -71,8 +71,8 @@ public class Result<T> implements Serializable {
         return new Result<>(ResultCodeEnum.SUCCESS, data);
     }
 
-    public static Result<?> fail(){
-        return new Result<>(ResultCodeEnum.ERROR);
+    public static Result<String> fail(){
+        return new Result<>(ResultCodeEnum.ERROR.code(), ResultCodeEnum.ERROR.msg(), false, null);
     }
 
     public static Result<?> fail(Integer code, String message){

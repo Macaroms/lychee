@@ -9,8 +9,9 @@ import lombok.Data;
  */
 
 @Data
-public class UrlCoderParam {
+public class CoderParam {
 
+    @ApiModelProperty(value = "源文本")
     private String src;
 
     @ApiModelProperty(value = "0:encode 1:decode")

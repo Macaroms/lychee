@@ -3,6 +3,7 @@ package com.lychee.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lychee.model.param.ParseTextParam;
 import com.lychee.model.param.PropsConvertParam;
+import com.lychee.model.param.CoderParam;
 import com.lychee.model.param.UrlCoderParam;
 import com.lychee.model.result.HistoryResult;
 import com.lychee.model.result.IpDataResult;
@@ -44,5 +45,9 @@ public interface ITextService extends IService<TestEntity> {
     String propsConvert(PropsConvertParam param);
 
     String urlCoder(UrlCoderParam param);
+
+    String unicode(CoderParam param);
+
+    String base64Coder(CoderParam param);
 
 }

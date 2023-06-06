@@ -1,17 +1,16 @@
 package com.lychee.controller;
 
 import com.lychee.model.Result;
-import com.lychee.model.param.CodeSrcParam;
-import com.lychee.model.param.ParseTextParam;
-import com.lychee.model.param.PropsConvertParam;
-import com.lychee.model.param.UrlCoderParam;
+import com.lychee.model.param.*;
 import com.lychee.model.result.HistoryResult;
 import com.lychee.model.result.IpDataResult;
 import com.lychee.model.result.PickTextResult;
 import com.lychee.model.result.WeatherResult;
 import com.lychee.service.ITextService;
+import com.lychee.util.IPUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -75,6 +74,17 @@ public class TextController {
         }
     }
 
+    @ApiOperation(value = "我的IP查询", notes = "我的IP查询")
+    @GetMapping("/originIp")
+    public Result<String> originIp(HttpServletRequest req) {
+        String ip = IPUtils.originIp(req);
+        if (StringUtils.isNotEmpty(ip)) {
+            return Result.ok(ip);
+        } else {
+            return Result.fail();
+        }
+    }
+
     @ApiOperation(value = "获取天气", notes = "获取天气")
     @GetMapping("/weather")
     public Result<WeatherResult> weather(HttpServletRequest request) {
@@ -107,6 +117,18 @@ public class TextController {
     @PostMapping("/urlCoder")
     public Result<String> urlCoder(@RequestBody UrlCoderParam param) {
         return Result.ok(textService.urlCoder(param));
+    }
+
+    @ApiOperation(value = "unicode编码/解码", notes = "unicode编码/解码")
+    @PostMapping("/unicode")
+    public Result<String> unicode(@RequestBody CoderParam param) {
+        return Result.ok(textService.unicode(param));
+    }
+
+    @ApiOperation(value = "base64编码/解码", notes = "base64编码/解码")
+    @PostMapping("/base64Coder")
+    public Result<String> base64Coder(@RequestBody CoderParam param) {
+        return Result.ok(textService.base64Coder(param));
     }
 
 }

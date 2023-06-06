@@ -9,6 +9,7 @@ import com.jayway.jsonpath.JsonPath;
 import com.lychee.mapper.TestMapper;
 import com.lychee.model.param.ParseTextParam;
 import com.lychee.model.param.PropsConvertParam;
+import com.lychee.model.param.CoderParam;
 import com.lychee.model.param.UrlCoderParam;
 import com.lychee.model.result.HistoryResult;
 import com.lychee.model.result.IpDataResult;
@@ -164,7 +165,7 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
         try {
             String result = httpClient.sendGet(url, new HashMap<>(), new HashMap<>());
             JSONObject resultObject = JSONObject.parseObject(result);
-            if (resultObject!=null && "200".equals(resultObject.get("code").toString())) {
+            if (resultObject != null && "200".equals(resultObject.get("code").toString())) {
                 return JSONObject.parseObject(
                         resultObject.get("data").toString(),
                         new TypeReference<List<HistoryResult>>() {
@@ -198,10 +199,10 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
         try {
             switch (type) {
                 case 0:
-                    result = URLEncoder.encode(param.getSrc(), "GBK");
+                    result = URLEncoder.encode(param.getSrc(), param.getEnc());
                     break;
                 case 1:
-                    result = URLDecoder.decode(param.getSrc(), "GBK");
+                    result = URLDecoder.decode(param.getSrc(), param.getEnc());
                     break;
                 default:
                     result = param.getSrc();
@@ -209,6 +210,57 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
         } catch (UnsupportedEncodingException e) {
             result = param.getSrc();
             e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static void main(String[] args) throws UnsupportedEncodingException {
+        System.out.println(URLEncoder.encode("传闻中的陈芊芊", "GBK"));
+        System.out.println(URLEncoder.encode("传闻中的陈芊芊", "UTF-8"));
+        System.out.println(URLEncoder.encode("传闻中的陈芊芊", "UTF-16"));
+        System.out.println(URLEncoder.encode("传闻中的陈芊芊", "UTF-16BE"));
+        System.out.println(URLEncoder.encode("传闻中的陈芊芊", "UTF-16LE"));
+
+
+        String a = "%20%4F%FB%95%2D%4E%84%76%48%96%8A%82%8A%82";
+        System.out.println(URLDecoder.decode(a, "UTF-16LE"));
+    }
+
+    @Override
+    public String unicode(CoderParam param) {
+        String result;
+        Integer type = param.getType();
+        try {
+            switch (type) {
+                case 0:
+                    result = strToUnicode(param.getSrc(), true);
+                    break;
+                case 1:
+                    result = unicodeToStr(param.getSrc());
+                    break;
+                default:
+                    result = param.getSrc();
+            }
+        } catch (Exception e) {
+            result = param.getSrc();
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    @Override
+    public String base64Coder(CoderParam param) {
+        String result;
+        switch (param.getType()) {
+            case 0:
+                result = Base64.getEncoder().encodeToString(param.getSrc().getBytes(StandardCharsets.UTF_8));
+                break;
+            case 1:
+                byte[] decode = Base64.getDecoder().decode(param.getSrc().getBytes(StandardCharsets.UTF_8));
+                result =  new String(decode, StandardCharsets.UTF_8);
+                break;
+            default:
+                result = param.getSrc();
         }
         return result;
     }
@@ -240,4 +292,97 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
         List<String> collect = nodes.stream().map(Object::toString).collect(Collectors.toList());
         return new PickTextResult(nodes.size(), JSONObject.toJSONString(collect));
     }
+
+    private String strToUnicode(String string, boolean halfWith) {
+        if (string == null || string.isEmpty()) {
+            // 传入字符串为空返回原内容
+            return string;
+        }
+        StringBuilder value = new StringBuilder(string.length() << 3);
+        String prefix = "\\u";
+        String zeroFix = " 0 ";
+        String unicode;
+        char c;
+        for (int i = 0, j; i < string.length(); i++) {
+            c = string.charAt(i);
+            if (!halfWith && c > 31 && c < 127) {
+                // 不转换半角字符
+                value.append(c);
+                continue;
+            }
+            value.append(prefix);
+            // 高 8 位
+            j = c >>> 8;
+            unicode = Integer.toHexString(j);
+            if (unicode.length() == 1) {
+                value.append(zeroFix);
+            }
+            value.append(unicode);
+            // 低 8 位
+            j = c & 0xFF;
+            unicode = Integer.toHexString(j);
+            if (unicode.length() == 1) {
+                value.append(zeroFix);
+            }
+            value.append(unicode);
+        }
+
+        return value.toString();
+    }
+
+    private String unicodeToStr(String string) {
+        String prefix = "\\u";
+        if (string == null || !string.contains(prefix)) {
+            // 传入字符串为空或不包含 Unicode 编码返回原内容
+            return string;
+        }
+        StringBuilder value = new StringBuilder(string.length() >> 2);
+        String[] strings = string.split("\\\\u");
+        String hex, mix;
+        char hexChar;
+        int ascii, n;
+        if (strings[0].length() > 0) {
+            // 处理开头的普通字符串
+            value.append(strings[0]);
+        }
+        try {
+            for (int i = 1; i < strings.length; i++) {
+                hex = strings[i];
+                if (hex.length() > 3) {
+                    mix = "";
+                    if (hex.length() > 4) {
+                        // 处理 Unicode 编码符号后面的普通字符串
+                        mix = hex.substring(4, hex.length());
+                    }
+                    hex = hex.substring(0, 4);
+
+                    try {
+                        Integer.parseInt(hex, 16);
+                    } catch (Exception e) {
+                        // 不能将当前 16 进制字符串正常转换为 10 进制数字，拼接原内容后跳出
+                        value.append(prefix).append(strings[i]);
+                        continue;
+                    }
+                    ascii = 0;
+                    for (int j = 0; j < hex.length(); j++) {
+                        hexChar = hex.charAt(j);
+                        // 将 Unicode 编码中的 16 进制数字逐个转为 10 进制
+                        n = Integer.parseInt(String.valueOf(hexChar), 16);
+                        // 转换为 ASCII 码
+                        ascii += n * ((int) Math.pow(16, (hex.length() - j - 1)));
+                    }
+                    // 拼接解码内容
+                    value.append((char) ascii).append(mix);
+                } else {
+                    // 不转换特殊长度的 Unicode 编码
+                    value.append(prefix).append(hex);
+                }
+            }
+        } catch (Exception e) {
+            // Unicode 编码格式有误，解码失败
+            return null;
+        }
+        return value.toString();
+    }
+
 }

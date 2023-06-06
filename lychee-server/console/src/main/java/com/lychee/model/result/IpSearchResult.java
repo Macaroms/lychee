@@ -50,4 +50,7 @@ public class IpSearchResult {
     @ApiModelProperty(value = "消息")
     private String message;
 
+    @ApiModelProperty(value = "ip")
+    private String query;
+
 }
