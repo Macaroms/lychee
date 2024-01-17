@@ -49,6 +49,7 @@ export default {
   'menu.text.color-picker': '取色器',
   'menu.text.cron-editor': 'Cron表达式',
   'menu.text.regex': '正则表达式',
+  'menu.text.js-editor': 'JS编辑器',
   'menu.text.xml-editor': 'XML编辑器',
   'menu.convert': '文本转换',
   'menu.convert.rmb-convert': '人民币数字转大写',

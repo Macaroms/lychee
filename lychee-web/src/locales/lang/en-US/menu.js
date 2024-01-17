@@ -49,6 +49,7 @@ export default {
   'menu.text.color-picker': 'Color Picker',
   'menu.text.cron-editor': 'Cron Editor',
   'menu.text.regex': 'Regular Expression',
+  'menu.text.js-editor': 'JS Editor',
   'menu.text.xml-editor': 'XML Editor',
   'menu.convert': 'Text Convert',
   'menu.convert.rmb-convert': 'RMB To Capital',

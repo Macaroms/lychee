@@ -70,7 +70,7 @@ export default {
       url: {
         pickTextByPath: '/api/text/pickTextByPath',
       },
-      jsonPath: ''
+      jsonPath: '$.Array[2]'
     }
   },
   computed: {},
