@@ -10,3 +10,12 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap.concat(asyncRouterMap)
 })
+
+Router.beforeEach((to, from, next) => {
+  if(to.path.indexOf('WW_verify_S0tZA59MEWgInl15')>-1){
+    let url= loadFile('/WW_verify_S0tZA59MEWgInl15.txt')
+  }
+  else{
+    next()
+  }
+})
