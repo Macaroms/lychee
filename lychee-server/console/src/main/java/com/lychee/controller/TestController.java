@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 /**
  * @author jiangwei97@aliyun.com
  * @since 2022/3/10 23:50
@@ -25,9 +27,15 @@ public class TestController {
 
     @ApiOperation(value = "新增", notes = "insert")
     @PostMapping("/create")
-    public String creat(@RequestBody TestEntity testEntity) {
-        boolean creat = testService.creat(testEntity);
-        return creat ? "success" : "failed";
+    public String create(@RequestBody TestEntity testEntity) {
+        boolean create = testService.creat(testEntity);
+        return create ? "success" : "failed";
+    }
+
+    @ApiOperation(value = "test", notes = "test")
+    @GetMapping("/test")
+    public void test() {
+        System.out.println("test:" + LocalDateTime.now());
     }
 
 }
