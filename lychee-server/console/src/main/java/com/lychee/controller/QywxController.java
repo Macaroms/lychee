@@ -38,12 +38,12 @@ public class QywxController {
         Map<String, String[]> parameterMap = request.getParameterMap();
         String jsonString = JSONObject.toJSONString(parameterMap);
         log.info("企业微信回调参数：{},  解析参数：{}", jsonString, body);
-
         if (body == null) {
+            log.info("GET");
             return qywxService.verificationUrl(request);
         }
-        Map<String, String> resultMap = qywxService.getRequestParameter(request, body);
-        System.err.println(resultMap);
+        log.info("POST");
+        qywxService.getRequestParameter(request, body);
         return "success";
     }
 
