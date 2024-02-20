@@ -58,6 +58,7 @@ public class QywxService implements IQywxService {
             log.info("企业微信加密签名: {},时间戳: {},随机数: {}", msgSignature, timeStamp, nonce);
             String sMsg = wxcpt.DecryptMsg(msgSignature, timeStamp, nonce, body);
             Map<String, String> resultMap = new HashMap<String, String>(16);
+            log.info("sMsg: {}", sMsg);
             ConstantUtil.parseXmlToMap(sMsg, resultMap);
             log.info("decrypt密文结果为{}", JSONObject.toJSONString(resultMap));
             log.info("=========参数解析结束=========");
