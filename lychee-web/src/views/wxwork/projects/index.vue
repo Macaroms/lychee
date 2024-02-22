@@ -77,7 +77,7 @@ export default {
     //     }
     //   }
     // });
-    // this.agentConfig()
+    this.agentConfig()
     let selectorType = this.getParameterByName('selectorType')
     let key = this.getParameterByName('key')
     this.text = 'key: ' + key + ' selectorType: ' + selectorType
