@@ -77,7 +77,7 @@ export default {
     //     }
     //   }
     // });
-    this.agentConfig()
+    // this.agentConfig()
     let selectorType = this.getParameterByName('selectorType')
     let key = this.getParameterByName('key')
     this.text = 'key: ' + key + ' selectorType: ' + selectorType
@@ -120,7 +120,7 @@ export default {
       //     }
       //   }
       // });
-      const JSAPI_TICKET = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3S6DVMEiy5QMRH3a0yPdqcHDqeRXE8JcHQZsy6E67PQHA'
+      const JSAPI_TICKET = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3QZx6_f2XmSSQPp00c1iaKsD252BBcfEjRk5fcse_m0gQ'
       ww.register({
         corpId: 'ww2728fd178710bdbe',
         getConfigSignature() {
