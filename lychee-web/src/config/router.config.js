@@ -534,7 +534,7 @@ export const constantRouterMap = [
     component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/404')
   },
   {
-    path: '/wxwork',
+    path: '/wxwork1',
     component: () => import(/* webpackChunkName: "user" */ '@/views/wxwork/projects/index')
   },
 ]

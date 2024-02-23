@@ -120,7 +120,7 @@ export default {
       //     }
       //   }
       // });
-      const JSAPI_TICKET = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3QZx6_f2XmSSQPp00c1iaKsD252BBcfEjRk5fcse_m0gQ'
+      const JSAPI_TICKET = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3RqkcGJhVfCd4Zp9iwC4JXU197ZthqRGP8fgyfQDHw2Dg'
       ww.register({
         corpId: 'ww2728fd178710bdbe',
         getConfigSignature() {
