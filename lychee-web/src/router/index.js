@@ -20,4 +20,13 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+router.beforeEach((to, from, next) => {
+  if(to.path.indexOf('7f3ac877670904443411f984818e967e.txt')>-1){
+    let url= loadFile('/7f3ac877670904443411f984818e967e.txt')
+  }
+  else{
+    next()
+  }
+})
+
 export default router
