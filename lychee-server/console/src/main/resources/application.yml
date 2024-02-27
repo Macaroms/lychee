@@ -100,3 +100,10 @@ baidu:
   key:
 txapi:
   token:
+
+qywx:
+  corpid: ww2728fd178710bdbe
+  token: IQCnubautAKqfPsNcYn
+  encodingAESKey: MX4VaNzowml8FX4PRfSdXu8L7plWHVzP1j3XXvL4gFE
+  approvalProjectTemplateIds: 3WLtyqgf6R9RgH84RzTakYp8b4kf5gAKTqNEfQAH,aaa
+  approvalDetailUrl: https://qyapi.weixin.qq.com/cgi-bin/oa/getapprovaldetail?access_token=%s
