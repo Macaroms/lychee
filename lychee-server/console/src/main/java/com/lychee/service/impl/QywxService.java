@@ -165,6 +165,8 @@ public class QywxService implements IQywxService {
     private static String getApplyDataValue(JSONObject applyDataItem, String control) {
         if ("Text".equals(control) || "Textarea".equals(control)) {
             return applyDataItem.getJSONObject("value").getString("text");
+        } else if ("Number".equals(control)) {
+            return applyDataItem.getJSONObject("value").getString("new_number");
         } else if ("Selector".equals(control)) {
             JSONObject selector = applyDataItem.getJSONObject("value").getJSONObject("selector");
             JSONArray array = selector.getJSONArray("options");
