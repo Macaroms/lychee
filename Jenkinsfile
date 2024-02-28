@@ -1,5 +1,4 @@
 String module = "${env.module}"
-String codePath = env.WORKSPACE
 
 pipeline {
     agent any
@@ -21,7 +20,8 @@ pipeline {
                     dir('/data/code/jenkinsDeploy') {
                         sh 'pwd'  // 在指定目录下执行命令
                         echo '部署模块: ' + module
-                        echo 'WORKSPACE: ' + codePath
+                        def codePath = env.WORKSPACE
+                        echo "The code path is: ${codePath}"
                     }
                 }
             }
