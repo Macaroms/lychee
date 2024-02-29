@@ -39,7 +39,7 @@ pipeline {
                         def workspace = env.WORKSPACE
                         echo "workspace: " + workspace
                         def cmd = "nohup java -jar -Dfile.encoding=utf-8 ${workspace}/lychee-server/${module}/target/${module}-0.0.1-SNAPSHOT.jar >> ${module}.log 2>&1 & echo \$! > ${module}.pid"
-                        echo cmd
+                        println cmd
                         sh cmd
                     }
                 }
