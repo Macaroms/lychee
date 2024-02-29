@@ -16,6 +16,9 @@
           <a-form-item label="msg" :labelCol='labelCol' :wrapperCol='wrapperCol'>
             <span>{{ msg }}</span>
           </a-form-item>
+          <a-form-item label="configRes" :labelCol='labelCol' :wrapperCol='wrapperCol'>
+            <span>{{ configRes }}</span>
+          </a-form-item>
           <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
             <a-button type="primary" @click="saveApprovalSelectedItems">
               Submit
@@ -38,12 +41,12 @@ export default {
       form: this.$form.createForm(this),
       confirmLoading: false,
       labelCol: {
-        xs: { span: 24 },
+        xs: { span: 12 },
         sm: { span: 5 }
       },
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 24 }
+        xs: { span: 12 },
+        sm: { span: 12 }
       },
       url: {},
       encList: ['UTF-8', 'UTF-16', 'UTF-16BE', 'UTF-16LE', 'GBK'],
@@ -58,29 +61,14 @@ export default {
       project: '',
       text: '',
       msg: '',
+      configRes: ''
     }
   },
   created() {
-    // wx.agentConfig({
-    //   corpid: '', // 必填，企业微信的corpid，必须与当前登录的企业一致
-    //   agentid: '', // 必填，企业微信的应用id （e.g. 1000247）
-    //   timestamp: , // 必填，生成签名的时间戳
-    //   nonceStr: '', // 必填，生成签名的随机串
-    //   signature: '',// 必填，签名，见附录-JS-SDK使用权限签名算法
-    //   jsApiList: ['selectExternalContact'], //必填，传入需要使用的接口名称
-    //   success: function(res) {
-    //     // 回调
-    //   },
-    //   fail: function(res) {
-    //     if(res.errMsg.indexOf('function not exist') > -1){
-    //       alert('版本过低请升级')
-    //     }
-    //   }
-    // });
-    this.agentConfig()
     let selectorType = this.getParameterByName('selectorType')
     let key = this.getParameterByName('key')
     this.text = 'key: ' + key + ' selectorType: ' + selectorType
+    this.agentConfig()
   },
   methods: {
     getParameterByName(name) {
@@ -120,14 +108,15 @@ export default {
       //     }
       //   }
       // });
-      const JSAPI_TICKET = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3RqkcGJhVfCd4Zp9iwC4JXU197ZthqRGP8fgyfQDHw2Dg'
+      const JSAPI_TICKET = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3RzkN6YgLbPNSOMd7WcalMVxYbRTU5jR_HkFJbXBNvqFA'
       ww.register({
         corpId: 'ww2728fd178710bdbe',
         getConfigSignature() {
           return ww.getSignature(JSAPI_TICKET)
         },
         onConfigComplete(res) {
-          alert(JSON.stringify(res))
+          this.configRes = res
+          alert(res)
         }
       })
     }

@@ -29,4 +29,13 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+router.beforeEach((to, from, next) => {
+  if(to.path.indexOf('WW_verify_jKG26lBKMRRoRWcH.txt')>-1){
+    let url= loadFile('/WW_verify_jKG26lBKMRRoRWcH.txt')
+  }
+  else{
+    next()
+  }
+})
+
 export default router
