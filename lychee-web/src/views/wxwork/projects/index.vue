@@ -25,6 +25,9 @@
           <a-form-item label="ww" :labelCol='labelCol' :wrapperCol='wrapperCol'>
             <span>{{ ww }}</span>
           </a-form-item>
+          <a-form-item label="flag" :labelCol='labelCol' :wrapperCol='wrapperCol'>
+            <span>{{ flag }}</span>
+          </a-form-item>
           <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
             <a-button type="primary" @click="saveApprovalSelectedItems">
               Submit
@@ -70,6 +73,7 @@ export default {
       configRes: '',
       ww: '',
       sign: '',
+      flag: 0,
     }
   },
   created() {
@@ -123,11 +127,12 @@ export default {
         corpId: 'ww2728fd178710bdbe',
         getConfigSignature() {
           this.sign = ww.getSignature(JSAPI_TICKET)
+          this.flag = 1
           return ww.getSignature(JSAPI_TICKET)
         },
         onConfigComplete(res) {
           this.configRes = res
-          alert(res)
+          this.flag = 2
         }
       })
     }
