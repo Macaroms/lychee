@@ -32,7 +32,7 @@
 <script>
 import { postAction } from '@/api/httpManager.js'
 import wx from 'jwxwork'
-import ww from 'jwecom'
+import * as ww from 'jwecom'
 
 export default {
   name: 'CharacterConversion',
@@ -109,6 +109,7 @@ export default {
       //   }
       // });
       const JSAPI_TICKET = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3RzkN6YgLbPNSOMd7WcalMVxYbRTU5jR_HkFJbXBNvqFA'
+      console.log('ww', ww)
       ww.register({
         corpId: 'ww2728fd178710bdbe',
         getConfigSignature() {
