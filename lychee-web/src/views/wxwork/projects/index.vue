@@ -41,7 +41,7 @@
 <script>
 import { postAction } from '@/api/httpManager.js'
 import wx from 'jwxwork'
-import * as ww from 'jwecom'
+import * as ww from '@wecom/jssdk'
 
 export default {
   name: 'CharacterConversion',
@@ -123,8 +123,12 @@ export default {
       const JSAPI_TICKET = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3RzkN6YgLbPNSOMd7WcalMVxYbRTU5jR_HkFJbXBNvqFA'
       console.log('ww', ww)
       this.ww = JSON.stringify(ww)
+
+      ww.saveApprovalSelectedItems();
+
       ww.register({
         corpId: 'ww2728fd178710bdbe',
+        jsApiList: ['saveApprovalSelectedItems'],
         getConfigSignature() {
           this.sign = ww.getSignature(JSAPI_TICKET)
           this.flag = 1
@@ -133,8 +137,27 @@ export default {
         onConfigComplete(res) {
           this.configRes = res
           this.flag = 2
+        },
+        onAgentConfigFail(res) {
+          console.log('onAgentConfigFail', res)
+        },
+        onConfigFail(res) {
+          console.log('onConfigFail', res)
         }
       })
+
+
+      // ww.register({
+      //   corpId: 'ww2728fd178710bdbe',       // 必填，当前用户企业所属企业ID
+      //   jsApiList: ['getExternalContact'], // 必填，需要使用的JSAPI列表
+      //   getConfigSignature                 // 必填，根据url生成企业签名的回调函数
+      // })
+      //
+      // async function getConfigSignature(url) {
+      //   // 根据 url 生成企业签名
+      //   // 生成方法参考 https://developer.work.weixin.qq.com/document/path/90539
+      //   return { timestamp, nonceStr, signature }
+      // }
     }
 
   }
