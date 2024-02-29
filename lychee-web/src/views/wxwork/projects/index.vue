@@ -3,7 +3,7 @@
     <a-card :body-style="{padding: '24px 32px'}" :bordered='false'>
       <a-spin :spinning='confirmLoading'>
         <a-form :form='form'>
-          <a-form-item label="选择项目" :labelCol='labelCol' :wrapperCol='wrapperCol'>
+          <a-form-item label="选择项目11" :labelCol='labelCol' :wrapperCol='wrapperCol'>
             <a-select v-model="project" style="width: 120px">
               <a-select-option v-for="item in projectList" :key="item">
                 {{ item.key }}
@@ -17,7 +17,13 @@
             <span>{{ msg }}</span>
           </a-form-item>
           <a-form-item label="configRes" :labelCol='labelCol' :wrapperCol='wrapperCol'>
-            <span>{{ configRes }}</span>
+            <span>{{ JSON.stringify(configRes) }}</span>
+          </a-form-item>
+          <a-form-item label="sign" :labelCol='labelCol' :wrapperCol='wrapperCol'>
+            <span>{{ sign }}</span>
+          </a-form-item>
+          <a-form-item label="ww" :labelCol='labelCol' :wrapperCol='wrapperCol'>
+            <span>{{ ww }}</span>
           </a-form-item>
           <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
             <a-button type="primary" @click="saveApprovalSelectedItems">
@@ -61,7 +67,9 @@ export default {
       project: '',
       text: '',
       msg: '',
-      configRes: ''
+      configRes: '',
+      ww: '',
+      sign: '',
     }
   },
   created() {
@@ -110,9 +118,11 @@ export default {
       // });
       const JSAPI_TICKET = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3RzkN6YgLbPNSOMd7WcalMVxYbRTU5jR_HkFJbXBNvqFA'
       console.log('ww', ww)
+      this.ww = JSON.stringify(ww)
       ww.register({
         corpId: 'ww2728fd178710bdbe',
         getConfigSignature() {
+          this.sign = ww.getSignature(JSAPI_TICKET)
           return ww.getSignature(JSAPI_TICKET)
         },
         onConfigComplete(res) {
