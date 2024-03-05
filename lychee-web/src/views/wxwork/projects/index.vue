@@ -116,9 +116,7 @@ export default {
         corpId: 'ww2728fd178710bdbe',
         agentId: 1000002,
         jsApiList: ['getExternalContact'],
-        getConfigSignature() {
-          return getConfigSignature()
-        },
+        getConfigSignature,
         onConfigSuccess: res => {
           this.flag = this.flag + 2
           this.configRes = this.configRes + JSON.stringify(res)
@@ -132,9 +130,7 @@ export default {
           this.flag = this.flag + 4
           this.configRes = this.configRes + JSON.stringify(res)
         },
-        getAgentConfigSignature() {
-          return getAgentConfigSignature()
-        },
+        getAgentConfigSignature,
         onAgentConfigSuccess: res => {
           this.flag = this.flag + 5
           this.configRes = this.configRes + JSON.stringify(res)
@@ -182,9 +178,11 @@ export default {
       ww.selectExternalContact({
         success(res) {
           console.log('success', JSON.stringify(res))
+          this.configRes = this.configRes + JSON.stringify(res)
         },
         fail(res) {
           console.log('fail', JSON.stringify(res))
+          this.configRes = this.configRes + JSON.stringify(res)
         }
       })
     },
