@@ -1,4 +1,5 @@
 String module = "${env.module}"
+def skipDeploy = false
 
 pipeline {
     agent any
@@ -26,12 +27,19 @@ pipeline {
                 script {
                     dir('lychee-server/' + module) {
                         sh 'mvn clean install -DskipTests'
+                        if (module == "common"){
+                            // 跳过第三个阶段
+                            skipDeploy = true
+                        }
                     }
                 }
             }
         }
 
         stage('Deploy') {
+            when {
+                expression { skipDeploy == false } // 当条件为假时执行第三个阶段
+            }
             steps {
                 script {
                     dir('/data/code/jenkinsDeploy') {

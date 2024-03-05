@@ -40,7 +40,7 @@
 </template>
 <script>
 import { postAction } from '@/api/httpManager.js'
-import wxwork from '../jwxwork-1.0.0.js'
+import wxwork from '../jweixin-1.0.0.js'
 import * as ww from '@wecom/jssdk'
 import sha1 from 'js-sha1'
 
@@ -103,61 +103,6 @@ export default {
       });
     },
     initWxAgentConfig(){
-      // // jsapi_ticket=JSAPITICKET&noncestr=NONCESTR&timestamp=TIMESTAMP&url=URL
-      // wx.agentConfig({
-      //   corpid: 'ww2728fd178710bdbe', // 必填，企业微信的corpid，必须与当前登录的企业一致
-      //   agentid: '1000002', // 必填，企业微信的应用id （e.g. 1000247）
-      //   timestamp: 1706687007, // 必填，生成签名的时间戳
-      //   nonceStr: 'lychee', // 必填，生成签名的随机串
-      //   signature: '498e78f7023353c8a14e04d118819a79bad27651',// 必填，签名，见附录-JS-SDK使用权限签名算法
-      //   jsApiList: ['selectExternalContact'], //必填，传入需要使用的接口名称
-      //   success: function(res) {
-      //   },
-      //   fail: function(res) {
-      //     if(res.errMsg.indexOf('function not exist') > -1){
-      //       alert('版本过低请升级')
-      //     }
-      //   }
-      // });
-      // const JSAPI_TICKET = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3RzkN6YgLbPNSOMd7WcalMVxYbRTU5jR_HkFJbXBNvqFA'
-      // console.log('ww', ww)
-      // this.ww = JSON.stringify(ww)
-      //
-      // ww.saveApprovalSelectedItems();
-      //
-      // ww.register({
-      //   corpId: 'ww2728fd178710bdbe',
-      //   jsApiList: ['saveApprovalSelectedItems'],
-      //   getConfigSignature() {
-      //     this.sign = ww.getSignature(JSAPI_TICKET)
-      //     this.flag = 1
-      //     return ww.getSignature(JSAPI_TICKET)
-      //   },
-      //   onConfigComplete(res) {
-      //     this.configRes = res
-      //     this.flag = 2
-      //   },
-      //   onAgentConfigFail(res) {
-      //     console.log('onAgentConfigFail', res)
-      //   },
-      //   onConfigFail(res) {
-      //     console.log('onConfigFail', res)
-      //   }
-      // })
-
-
-      // ww.register({
-      //   corpId: 'ww2728fd178710bdbe',       // 必填，当前用户企业所属企业ID
-      //   jsApiList: ['getExternalContact'], // 必填，需要使用的JSAPI列表
-      //   getConfigSignature                 // 必填，根据url生成企业签名的回调函数
-      // })
-      //
-      // async function getConfigSignature(url) {
-      //   // 根据 url 生成企业签名
-      //   // 生成方法参考 https://developer.work.weixin.qq.com/document/path/90539
-      //   return { timestamp, nonceStr, signature }
-      // }
-
       const jsapiTicket = 'QrdjkVn9E2N+TnCcOjRNmA=='
       const timestamp = Math.floor(Date.now() / 1000)
       const noncestr = 'jiangwei'
