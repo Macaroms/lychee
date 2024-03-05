@@ -127,7 +127,7 @@ export default {
           this.configRes = this.configRes + JSON.stringify(res)
         },
         getAgentConfigSignature() {
-          return getConfigSignature()
+          return getAgentConfigSignature()
         },
         onAgentConfigSuccess: res => {
           this.flag = this.flag + 5
@@ -155,6 +155,14 @@ export default {
         let sign = sha1(str)
         console.log('sign', sign)
         return sign
+      }
+      function getAgentConfigSignature() {
+        const jsapiTicket = '2S2FfPAOxe6cCrQuAd7FAA=='
+        const timestamp = Math.floor(Date.now() / 1000)
+        const noncestr = 'jiangwei'
+        const url = window.location.href
+        const str = 'jsapi_ticket=' + jsapiTicket + '&noncestr=' + noncestr + '&timestamp=' + timestamp + '&url=' + url
+        return sha1(str)
       }
       ww.selectExternalContact({
         success(res) {
