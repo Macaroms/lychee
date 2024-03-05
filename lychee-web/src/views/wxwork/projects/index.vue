@@ -129,7 +129,7 @@ export default {
           this.configRes = this.configRes + JSON.stringify(res)
         },
         getAgentConfigSignature() {
-          return getAgentConfigSignature()
+          return getConfigSignature()
         },
         onAgentConfigSuccess: res => {
           this.flag = this.flag + 4
@@ -157,7 +157,7 @@ export default {
         return sign
       }
       async function getAgentConfigSignature() {
-        const jsapiTicket = '2S2FfPAOxe6cCrQuAd7FAA='
+        const jsapiTicket = '2S2FfPAOxe6cCrQuAd7FAA=='
         const timestamp = Math.floor(Date.now() / 1000)
         const noncestr = 'jiangwei'
         const url = window.location.href
