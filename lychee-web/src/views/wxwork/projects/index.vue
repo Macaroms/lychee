@@ -28,6 +28,12 @@
           <a-form-item label="flag" :labelCol='labelCol' :wrapperCol='wrapperCol'>
             <span>{{ flag }}</span>
           </a-form-item>
+          <a-form-item label="str1" :labelCol='labelCol' :wrapperCol='wrapperCol'>
+            <span>{{ str1 }}</span>
+          </a-form-item>
+          <a-form-item label="str2" :labelCol='labelCol' :wrapperCol='wrapperCol'>
+            <span>{{ str2 }}</span>
+          </a-form-item>
           <a-form-item :wrapper-col="{ span: 12, offset: 5 }">
             <a-button type="primary" @click="saveApprovalSelectedItems">
               Submit
@@ -73,6 +79,8 @@ export default {
       ww: '',
       sign: '',
       flag: '0',
+      str1: '',
+      str2: '',
     }
   },
   created() {
@@ -104,8 +112,6 @@ export default {
       });
     },
     initWxConfig(){
-      console.log('ww', ww)
-      this.ww = JSON.stringify(ww)
       ww.register({
         corpId: 'ww2728fd178710bdbe',
         agentId: 1000002,
@@ -142,7 +148,8 @@ export default {
           this.configRes = this.configRes + JSON.stringify(res)
         },
       })
-      function getConfigSignature() {
+      let that = this
+      async function getConfigSignature() {
         const jsapiTicket = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3Qw10DSvNlJtsyKLmS4SFnJkrsiaU5Ew3Cos9KBAot0Fg'
         const timestamp = Math.floor(Date.now() / 1000)
         const noncestr = 'jiangwei'
@@ -153,16 +160,24 @@ export default {
         console.log('url', url)
         const str = 'jsapi_ticket=' + jsapiTicket + '&noncestr=' + noncestr + '&timestamp=' + timestamp + '&url=' + url
         let sign = sha1(str)
-        console.log('sign', sign)
+        console.log('getConfigSignature', sign)
+        that.str1 = str
         return sign
       }
-      function getAgentConfigSignature() {
+      async function getAgentConfigSignature() {
         const jsapiTicket = '2S2FfPAOxe6cCrQuAd7FAA=='
         const timestamp = Math.floor(Date.now() / 1000)
         const noncestr = 'jiangwei'
         const url = window.location.href
+        console.log('jsapiTicket', jsapiTicket)
+        console.log('noncestr', noncestr)
+        console.log('timestamp', timestamp)
+        console.log('url', url)
         const str = 'jsapi_ticket=' + jsapiTicket + '&noncestr=' + noncestr + '&timestamp=' + timestamp + '&url=' + url
-        return sha1(str)
+        let sign = sha1(str)
+        console.log('getAgentConfigSignature', sign)
+        that.str2 = str
+        return sign
       }
       ww.selectExternalContact({
         success(res) {
