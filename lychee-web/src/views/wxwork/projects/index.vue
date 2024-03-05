@@ -40,7 +40,7 @@
 </template>
 <script>
 import { postAction } from '@/api/httpManager.js'
-import wx from 'jwxwork'
+import wxwork from '../jwxwork-1.0.0.js'
 import * as ww from '@wecom/jssdk'
 import sha1 from 'js-sha1'
 
@@ -79,7 +79,7 @@ export default {
     let selectorType = this.getParameterByName('selectorType')
     let key = this.getParameterByName('key')
     this.text = 'key: ' + key + ' selectorType: ' + selectorType
-    this.agentConfig()
+    this.initWxAgentConfig()
   },
   methods: {
     getParameterByName(name) {
@@ -102,7 +102,7 @@ export default {
         }
       });
     },
-    agentConfig(){
+    initWxAgentConfig(){
       // // jsapi_ticket=JSAPITICKET&noncestr=NONCESTR&timestamp=TIMESTAMP&url=URL
       // wx.agentConfig({
       //   corpid: 'ww2728fd178710bdbe', // 必填，企业微信的corpid，必须与当前登录的企业一致
@@ -158,7 +158,7 @@ export default {
       //   return { timestamp, nonceStr, signature }
       // }
 
-      const jsapiTicket = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3TQAD7GCP0nKnCPlHZxlU66V3lNDaWhfz0VerAYZwB3Vw'
+      const jsapiTicket = 'QrdjkVn9E2N+TnCcOjRNmA=='
       const timestamp = Math.floor(Date.now() / 1000)
       const noncestr = 'jiangwei'
       const url = window.location.href
@@ -170,7 +170,8 @@ export default {
       let signature = sha1(str)
       console.log(signature)
 
-      wx.agentConfig({
+      console.log('wxwork', wxwork)
+      wxwork.agentConfig({
         corpid: 'ww2728fd178710bdbe', // 必填，企业微信的corpid，必须与当前登录的企业一致
         agentid: '1000002', // 必填，企业微信的应用id （e.g. 1000247）
         timestamp: timestamp, // 必填，生成签名的时间戳
