@@ -115,25 +115,31 @@ export default {
         },
         onConfigSuccess: res => {
           this.flag = this.flag + 2
+          this.configRes = this.configRes + JSON.stringify(res)
         },
         onConfigFail: res => {
           console.log('onConfigFail', res)
           this.flag = this.flag + 3
+          this.configRes = this.configRes + JSON.stringify(res)
         },
         onConfigComplete: res => {
           this.flag = this.flag + 4
+          this.configRes = this.configRes + JSON.stringify(res)
         },
         getAgentConfigSignature() {
           return getConfigSignature()
         },
         onAgentConfigSuccess: res => {
           this.flag = this.flag + 5
+          this.configRes = this.configRes + JSON.stringify(res)
         },
         onAgentConfigFail: res => {
           this.flag = this.flag + 6
+          this.configRes = this.configRes + JSON.stringify(res)
         },
         onAgentConfigComplete: res => {
           this.flag = this.flag + 7
+          this.configRes = this.configRes + JSON.stringify(res)
         },
       })
       function getConfigSignature() {
