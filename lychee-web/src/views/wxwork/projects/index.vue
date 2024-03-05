@@ -5,7 +5,7 @@
         <a-form :form='form'>
           <a-form-item label="选择项目11" :labelCol='labelCol' :wrapperCol='wrapperCol'>
             <a-select v-model="project" style="width: 120px">
-              <a-select-option v-for="item in projectList" :key="item">
+              <a-select-option v-for="item in projectList" :key="item.key">
                 {{ item.key }}
               </a-select-option>
             </a-select>
@@ -42,6 +42,7 @@
 import { postAction } from '@/api/httpManager.js'
 import wx from 'jwxwork'
 import * as ww from '@wecom/jssdk'
+import sha1 from 'js-sha1'
 
 export default {
   name: 'CharacterConversion',
@@ -58,8 +59,6 @@ export default {
         sm: { span: 12 }
       },
       url: {},
-      encList: ['UTF-8', 'UTF-16', 'UTF-16BE', 'UTF-16LE', 'GBK'],
-      enc: 'UTF-8',
       projectList: [{
         key: 'item-1',
         value: '选项1'
@@ -120,31 +119,31 @@ export default {
       //     }
       //   }
       // });
-      const JSAPI_TICKET = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3RzkN6YgLbPNSOMd7WcalMVxYbRTU5jR_HkFJbXBNvqFA'
-      console.log('ww', ww)
-      this.ww = JSON.stringify(ww)
-
-      ww.saveApprovalSelectedItems();
-
-      ww.register({
-        corpId: 'ww2728fd178710bdbe',
-        jsApiList: ['saveApprovalSelectedItems'],
-        getConfigSignature() {
-          this.sign = ww.getSignature(JSAPI_TICKET)
-          this.flag = 1
-          return ww.getSignature(JSAPI_TICKET)
-        },
-        onConfigComplete(res) {
-          this.configRes = res
-          this.flag = 2
-        },
-        onAgentConfigFail(res) {
-          console.log('onAgentConfigFail', res)
-        },
-        onConfigFail(res) {
-          console.log('onConfigFail', res)
-        }
-      })
+      // const JSAPI_TICKET = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3RzkN6YgLbPNSOMd7WcalMVxYbRTU5jR_HkFJbXBNvqFA'
+      // console.log('ww', ww)
+      // this.ww = JSON.stringify(ww)
+      //
+      // ww.saveApprovalSelectedItems();
+      //
+      // ww.register({
+      //   corpId: 'ww2728fd178710bdbe',
+      //   jsApiList: ['saveApprovalSelectedItems'],
+      //   getConfigSignature() {
+      //     this.sign = ww.getSignature(JSAPI_TICKET)
+      //     this.flag = 1
+      //     return ww.getSignature(JSAPI_TICKET)
+      //   },
+      //   onConfigComplete(res) {
+      //     this.configRes = res
+      //     this.flag = 2
+      //   },
+      //   onAgentConfigFail(res) {
+      //     console.log('onAgentConfigFail', res)
+      //   },
+      //   onConfigFail(res) {
+      //     console.log('onConfigFail', res)
+      //   }
+      // })
 
 
       // ww.register({
@@ -158,6 +157,40 @@ export default {
       //   // 生成方法参考 https://developer.work.weixin.qq.com/document/path/90539
       //   return { timestamp, nonceStr, signature }
       // }
+
+      const jsapiTicket = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3TQAD7GCP0nKnCPlHZxlU66V3lNDaWhfz0VerAYZwB3Vw'
+      const timestamp = Math.floor(Date.now() / 1000)
+      const noncestr = 'jiangwei'
+      const url = window.location.href
+      console.log('jsapiTicket', jsapiTicket)
+      console.log('noncestr', noncestr)
+      console.log('timestamp', timestamp)
+      console.log('url', url)
+      const str = 'jsapi_ticket=' + jsapiTicket + '&noncestr=' + noncestr + '&timestamp=' + timestamp + '&url=' + url
+      let signature = sha1(str)
+      console.log(signature)
+
+      wx.agentConfig({
+        corpid: 'ww2728fd178710bdbe', // 必填，企业微信的corpid，必须与当前登录的企业一致
+        agentid: '1000002', // 必填，企业微信的应用id （e.g. 1000247）
+        timestamp: timestamp, // 必填，生成签名的时间戳
+        nonceStr: noncestr, // 必填，生成签名的随机串
+        signature: signature,// 必填，签名，见附录-JS-SDK使用权限签名算法
+        jsApiList: ['selectExternalContact'], //必填，传入需要使用的接口名称
+        success: function(res) {
+          this.configRes = res
+          this.flag = 2
+        },
+        fail: function(res) {
+          this.configRes = res
+          this.flag = 3
+          if (res.errMsg.indexOf('function not exist') > -1){
+            alert('版本过低请升级')
+          }
+        }
+      });
+
+
     }
 
   }

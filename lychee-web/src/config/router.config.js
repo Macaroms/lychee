@@ -187,12 +187,6 @@ export const asyncRouterMap = [
             component: () => import('@/views/map'),
             meta: { title: 'menu.map', keepAlive: true, permission: ['third'] },
           },
-          {
-            path: '/wxwork',
-            name: 'wxwork',
-            component: () => import('@/views/wxwork/projects'),
-            meta: { title: 'wxwork', keepAlive: true, permission: ['third'] },
-          },
         ]
       },
       {

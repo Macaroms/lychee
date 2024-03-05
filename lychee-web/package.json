@@ -20,6 +20,7 @@
     "codemirror": "^5.46.0",
     "core-js": "^3.1.2",
     "enquire.js": "^2.1.6",
+    "js-sha1": "^0.7.0",
     "jsoneditor": "^9.7.4",
     "jwecom": "^1.0.3",
     "jwxwork": "^0.1.12",
