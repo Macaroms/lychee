@@ -137,7 +137,7 @@ export default {
         },
       })
       function getConfigSignature() {
-        const jsapiTicket = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3SN9_xu5z7hYtuT2ekS0rubp0b246rGR7kO4T8m6bctEg'
+        const jsapiTicket = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3Qw10DSvNlJtsyKLmS4SFnJkrsiaU5Ew3Cos9KBAot0Fg'
         const timestamp = Math.floor(Date.now() / 1000)
         const noncestr = 'jiangwei'
         const url = window.location.href
