@@ -40,7 +40,7 @@
 </template>
 <script>
 import { postAction } from '@/api/httpManager.js'
-import wxwork from '../jweixin-1.0.0.js'
+// import wxwork from '../jweixin-1.0.0.js'
 import * as ww from '@wecom/jssdk'
 import sha1 from 'js-sha1'
 
@@ -72,14 +72,15 @@ export default {
       configRes: '',
       ww: '',
       sign: '',
-      flag: 0,
+      flag: '0',
     }
   },
   created() {
     let selectorType = this.getParameterByName('selectorType')
     let key = this.getParameterByName('key')
     this.text = 'key: ' + key + ' selectorType: ' + selectorType
-    this.initWxAgentConfig()
+    // this.initWxAgentConfig()
+      this.initWxConfig()
   },
   methods: {
     getParameterByName(name) {
@@ -102,8 +103,64 @@ export default {
         }
       });
     },
+    initWxConfig(){
+      console.log('ww', ww)
+      this.ww = JSON.stringify(ww)
+      ww.register({
+        corpId: 'ww2728fd178710bdbe',
+        agentId: 1000002,
+        jsApiList: ['getExternalContact'],
+        getConfigSignature() {
+          return getConfigSignature()
+        },
+        onConfigSuccess: res => {
+          this.flag = this.flag + 2
+        },
+        onConfigFail: res => {
+          console.log('onConfigFail', res)
+          this.flag = this.flag + 3
+        },
+        onConfigComplete: res => {
+          this.flag = this.flag + 4
+        },
+        getAgentConfigSignature() {
+          return getConfigSignature()
+        },
+        onAgentConfigSuccess: res => {
+          this.flag = this.flag + 5
+        },
+        onAgentConfigFail: res => {
+          this.flag = this.flag + 6
+        },
+        onAgentConfigComplete: res => {
+          this.flag = this.flag + 7
+        },
+      })
+      function getConfigSignature() {
+        const jsapiTicket = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3SN9_xu5z7hYtuT2ekS0rubp0b246rGR7kO4T8m6bctEg'
+        const timestamp = Math.floor(Date.now() / 1000)
+        const noncestr = 'jiangwei'
+        const url = window.location.href
+        console.log('jsapiTicket', jsapiTicket)
+        console.log('noncestr', noncestr)
+        console.log('timestamp', timestamp)
+        console.log('url', url)
+        const str = 'jsapi_ticket=' + jsapiTicket + '&noncestr=' + noncestr + '&timestamp=' + timestamp + '&url=' + url
+        let sign = sha1(str)
+        console.log('sign', sign)
+        return sign
+      }
+      ww.selectExternalContact({
+        success(res) {
+          console.log('success', JSON.stringify(res))
+        },
+        fail(res) {
+          console.log('fail', JSON.stringify(res))
+        }
+      })
+    },
     initWxAgentConfig(){
-      const jsapiTicket = 'QrdjkVn9E2N+TnCcOjRNmA=='
+      const jsapiTicket = 'sM4AOVdWfPE4DxkXGEs8VIeo2zeBrY-Yr5NkFOCJj3TQAD7GCP0nKnCPlHZxlU66V3lNDaWhfz0VerAYZwB3Vw'
       const timestamp = Math.floor(Date.now() / 1000)
       const noncestr = 'jiangwei'
       const url = window.location.href
@@ -116,25 +173,27 @@ export default {
       console.log(signature)
 
       console.log('wxwork', wxwork)
-      wxwork.agentConfig({
-        corpid: 'ww2728fd178710bdbe', // 必填，企业微信的corpid，必须与当前登录的企业一致
-        agentid: '1000002', // 必填，企业微信的应用id （e.g. 1000247）
-        timestamp: timestamp, // 必填，生成签名的时间戳
-        nonceStr: noncestr, // 必填，生成签名的随机串
-        signature: signature,// 必填，签名，见附录-JS-SDK使用权限签名算法
-        jsApiList: ['selectExternalContact'], //必填，传入需要使用的接口名称
-        success: function(res) {
-          this.configRes = res
-          this.flag = 2
-        },
-        fail: function(res) {
-          this.configRes = res
-          this.flag = 3
-          if (res.errMsg.indexOf('function not exist') > -1){
-            alert('版本过低请升级')
-          }
-        }
-      });
+      // wxwork.agentConfig({
+      //   corpid: 'ww2728fd178710bdbe', // 必填，企业微信的corpid，必须与当前登录的企业一致
+      //   agentid: '1000002', // 必填，企业微信的应用id （e.g. 1000247）
+      //   timestamp: timestamp, // 必填，生成签名的时间戳
+      //   nonceStr: noncestr, // 必填，生成签名的随机串
+      //   signature: signature,// 必填，签名，见附录-JS-SDK使用权限签名算法
+      //   jsApiList: ['selectExternalContact'], //必填，传入需要使用的接口名称
+      //   success: function(res) {
+      //     this.configRes = res
+      //     this.flag = 2
+      //     alert('2')
+      //   },
+      //   fail: function(res) {
+      //     this.configRes = res
+      //     this.flag = 3
+      //     alert('3')
+      //     if (res.errMsg.indexOf('function not exist') > -1){
+      //       alert('版本过低请升级')
+      //     }
+      //   }
+      // });
 
 
     }
