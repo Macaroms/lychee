@@ -23,7 +23,7 @@ public class ExecScriptParam {
     private List<Arg> args;
 
     @Data
-    static class Arg {
+    public static class Arg {
 
         @ApiModelProperty(value = "参数主键")
         private String key;

@@ -27,6 +27,7 @@ import org.springframework.util.DigestUtils;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.net.URLDecoder;
@@ -272,8 +273,22 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
 
     @Override
     public String execJsScript(ExecScriptParam param) {
-        Object[] array = param.getArgs().toArray();
+        List<ExecScriptParam.Arg> args = param.getArgs();
+        Object[] array = getParamsByType(args);
         return scriptExecUtil.scriptEngineJs(param.getMethod(), param.getCode(), array);
+    }
+
+    private Object[] getParamsByType(List<ExecScriptParam.Arg> args){
+        return args.stream().map(o -> {
+            String type = o.getType();
+            if ("text".equals(type)) {
+                return o.getValue();
+            } else if ("number".equals(type)) {
+                return Integer.parseInt(o.getValue());
+            } else {
+                return o.getValue();
+            }
+        }).toArray(Object[]::new);
     }
 
     private String userIp(HttpServletRequest request) {
