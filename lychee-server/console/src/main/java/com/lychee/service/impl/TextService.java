@@ -1,5 +1,6 @@
 package com.lychee.service.impl;
 
+import cn.hutool.http.HttpRequest;
 import com.alibaba.fastjson2.JSONObject;
 import com.alibaba.fastjson2.TypeReference;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -159,9 +160,12 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
 
     @Override
     public List<HistoryResult> history() {
-        String url = "https://api.asilu.com/today";
+        String url = "https://query.asilu.com/today/list";
         try {
-            String result = httpClient.sendGet(url, new HashMap<>(), new HashMap<>());
+            String result = HttpRequest.get(url)
+                    .timeout(25000)
+                    .execute()
+                    .body();
             JSONObject resultObject = JSONObject.parseObject(result);
             if (resultObject != null && "200".equals(resultObject.get("code").toString())) {
                 return JSONObject.parseObject(
@@ -172,7 +176,7 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
             } else {
                 return Lists.newArrayList();
             }
-        } catch (IOException | URISyntaxException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
     }

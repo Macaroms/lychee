@@ -1,5 +1,6 @@
 package com.lychee.service.impl;
 
+import cn.hutool.http.HttpRequest;
 import com.alibaba.fastjson2.JSONObject;
 import com.google.common.collect.ImmutableMap;
 import com.lychee.model.Result;
@@ -44,27 +45,30 @@ public class SearchService implements ISearchService {
         }
     }
 
-    private static final String FREE_API_APP_ID="fxosiefsoqdywrjj";
+    private static final String FREE_API_APP_ID = "fxosiefsoqdywrjj";
 
-    private static final String FREE_API_APP_SECRET="oOMhk0KXhXJPWBAkljvP0IrHdSVddlnA";
+    private static final String FREE_API_APP_SECRET = "oOMhk0KXhXJPWBAkljvP0IrHdSVddlnA";
 
     @Override
     public Result<?> rubbishClassify(String name) {
         String url = "https://www.mxnzp.com/api/rubbish/type";
         try {
-            ImmutableMap<String, String> param = ImmutableMap.of(
-                    "app_id", FREE_API_APP_ID,
-                    "app_secret", FREE_API_APP_SECRET,
-                    "name", name
-            );
-            String result = httpClient.sendGet(url, new HashMap<>(), param);
+            String result = HttpRequest.get(url)
+                    .form(
+                            "app_id", FREE_API_APP_ID,
+                            "app_secret", FREE_API_APP_SECRET,
+                            "name", name
+                    )
+                    .timeout(25000)
+                    .execute()
+                    .body();
             RubbishClassifyResult rubbishClassifyResult = JSONObject.parseObject(result, RubbishClassifyResult.class);
             if (rubbishClassifyResult.getCode() == 1) {
                 return Result.ok(rubbishClassifyResult);
             } else {
                 return Result.fail(500, "未查询到信息");
             }
-        } catch (IOException | URISyntaxException e) {
+        } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
         }
     }
