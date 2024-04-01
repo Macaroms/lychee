@@ -32,6 +32,8 @@ import BaiduMap from 'vue-baidu-map'
 Vue.use(BaiduMap, {
   ak: 'xw6IN7ODtTBtguM27HbYPHrCnndoUmiN'
 })
+import { FormModel } from 'ant-design-vue';
+Vue.use(FormModel);
 Vue.config.productionTip = false
 
 // mount axios to `Vue.$http` and `this.$http`
