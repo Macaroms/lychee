@@ -44,14 +44,22 @@ public class SearchService implements ISearchService {
         }
     }
 
+    private static final String FREE_API_APP_ID="fxosiefsoqdywrjj";
+
+    private static final String FREE_API_APP_SECRET="oOMhk0KXhXJPWBAkljvP0IrHdSVddlnA";
+
     @Override
     public Result<?> rubbishClassify(String name) {
-        String url = "http://api.txapi.cn/v1/c/rubbish_classify_query";
+        String url = "https://www.mxnzp.com/api/rubbish/type";
         try {
-            ImmutableMap<String, String> param = ImmutableMap.of("token", txApiToken, "name", name);
+            ImmutableMap<String, String> param = ImmutableMap.of(
+                    "app_id", FREE_API_APP_ID,
+                    "app_secret", FREE_API_APP_SECRET,
+                    "name", name
+            );
             String result = httpClient.sendGet(url, new HashMap<>(), param);
             RubbishClassifyResult rubbishClassifyResult = JSONObject.parseObject(result, RubbishClassifyResult.class);
-            if ("OK".equals(rubbishClassifyResult.getMsg())) {
+            if (rubbishClassifyResult.getCode() == 1) {
                 return Result.ok(rubbishClassifyResult);
             } else {
                 return Result.fail(500, "未查询到信息");

@@ -159,7 +159,7 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
 
     @Override
     public List<HistoryResult> history() {
-        String url = "https://api.vore.top/api/history";
+        String url = "https://api.asilu.com/today";
         try {
             String result = httpClient.sendGet(url, new HashMap<>(), new HashMap<>());
             JSONObject resultObject = JSONObject.parseObject(result);
@@ -269,7 +269,6 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
     @Override
     public String execJsScript(ExecScriptParam param) {
         Object[] array = param.getArgs().toArray();
-        System.out.println(param.getCode());
         return scriptExecUtil.scriptEngineJs(param.getMethod(), param.getCode(), array);
     }
 

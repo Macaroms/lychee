@@ -15,10 +15,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class HistoryResult {
 
-    @ApiModelProperty(value = "info")
-    private String info;
+    @ApiModelProperty(value = "年")
+    private String year;
 
-    @ApiModelProperty(value = "日期")
-    private String date;
+    @ApiModelProperty(value = "标题")
+    private String title;
+
+    @ApiModelProperty(value = "链接")
+    private String link;
+
+    @ApiModelProperty(value = "类型")
+    private String type;
 
 }

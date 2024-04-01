@@ -19,7 +19,21 @@ public class ExecScriptParam {
     @ApiModelProperty(value = "方法")
     private String method;
 
-    @ApiModelProperty(value = "参数")
-    private List<Object> args;
+    @ApiModelProperty(value = "参数列表")
+    private List<Arg> args;
+
+    @Data
+    static class Arg {
+
+        @ApiModelProperty(value = "参数主键")
+        private String key;
+
+        @ApiModelProperty(value = "参数值")
+        private String value;
+
+        @ApiModelProperty(value = "参数类型")
+        private String type;
+
+    }
 
 }
