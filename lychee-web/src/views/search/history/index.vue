@@ -9,10 +9,10 @@
     >
       <a-list-item slot="renderItem" slot-scope="item">
         <template>
-          <a-card :hoverable="true">
+          <a-card style="height: 120px" :hoverable="true" @click="viewPage(item.link)">
             <a-card-meta>
-              <a slot="title">{{ item.date }}</a>
-              <div class="meta-content" slot="description">{{ item.info }}</div>
+              <a slot="title">{{ item.year + day }}</a>
+              <div class="meta-content" slot="description">{{ item.title }}</div>
             </a-card-meta>
           </a-card>
         </template>
@@ -32,6 +32,7 @@ export default {
       url: {
         history: '/api/text/history',
       },
+      day: '',
       list: []
     }
   },
@@ -41,6 +42,8 @@ export default {
   methods: {
     history() {
       this.loading = true
+      let today = new Date();
+      this.day= "/" + (today .getMonth()+1) + "/" + today.getDate();
       getAction(this.url.history).then((res) => {
         if(res.code === 200){
           this.list = res.data
@@ -50,6 +53,9 @@ export default {
       }).finally(() => {
         this.loading = false
       })
+    },
+    viewPage(link) {
+      window.open(link, '_blank');
     }
   }
 }
