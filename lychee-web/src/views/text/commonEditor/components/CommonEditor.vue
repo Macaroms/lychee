@@ -83,7 +83,7 @@ export default {
         cursorHeight: 0.8, //光标高度，默认是1
         autoCloseBrackets: true,
         matchBrackets: true, // 括号匹配
-        lineWrapping: 'wrap', // 文字过长时，是换行(wrap)还是滚动(scroll),默认是滚动
+        lineWrapping: 'scroll', // 文字过长时，是换行(wrap)还是滚动(scroll),默认是滚动
         showCursorWhenSelecting: true, // 文本选中时显示光标
         smartIndent: true, // 智能缩进
         completeSingle: false // 当匹配只有一项的时候是否自动补全

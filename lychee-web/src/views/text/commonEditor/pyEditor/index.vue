@@ -4,10 +4,10 @@
       <a-spin :spinning='confirmLoading'>
           <a-row class='form-row' :gutter='24'>
             <a-col :lg='11' :md='11' :sm='11'>
-              <a-divider orientation='left'>JavaScript</a-divider>
+              <a-divider orientation='left'>Python</a-divider>
               <common-editor
                 :value="jsContent"
-                language="javascript"
+                language="python"
                 @input="changeTextarea"
                 style="height: 80vh"
                 ref='common_editor'
@@ -65,7 +65,7 @@ import { postAction } from '@/api/httpManager.js'
 import CommonEditor from '.././components/CommonEditor'
 
 export default {
-  name: 'jsEditor',
+  name: 'shellEditor',
   components: { CommonEditor },
   data() {
     return {
@@ -83,19 +83,8 @@ export default {
         execJsScript: '/api/text/execJsScript'
       },
       result: '',
-      jsContent: 'function main(key, val){\n' +
-        '    var name = this.getName(key);\n' +
-        '    var num = this.getNum(val);\n' +
-        '    return name + \':\' + num;\n' +
-        '}\n' +
-        '\n' +
-        'function getName(key){\n' +
-        '  return \'jiang\' + key;\n' +
-        '}\n' +
-        '\n' +
-        'function getNum(num){\n' +
-        '  return num + 1;\n' +
-        '}',
+      jsContent: 'def main(cmd):\n' +
+        '  return cmd',
       methodName: 'main',
       methodArgs: 'wei, 2',
     }
@@ -109,28 +98,28 @@ export default {
       this.confirmLoading = false
     },
     exec() {
-      this.confirmLoading = true
-      let arr = this.methodArgs.split(',')
-      let args = []
-      for(let a of arr){
-        args.push(a.trim())
-      }
-      postAction(
-        this.url.execJsScript,
-        {
-          code: this.jsContent,
-          method: this.methodName,
-          args: args
-        }
-      ).then((res) => {
-        if (res.code === 200) {
-          this.result = res.data
-        } else {
-          this.$message.error(res.message)
-        }
-      }).finally(() => {
-        this.confirmLoading = false
-      })
+      // this.confirmLoading = true
+      // let arr = this.methodArgs.split(',')
+      // let args = []
+      // for(let a of arr){
+      //   args.push(a.trim())
+      // }
+      // postAction(
+      //   this.url.execJsScript,
+      //   {
+      //     code: this.jsContent,
+      //     method: this.methodName,
+      //     args: args
+      //   }
+      // ).then((res) => {
+      //   if (res.code === 200) {
+      //     this.result = res.data
+      //   } else {
+      //     this.$message.error(res.message)
+      //   }
+      // }).finally(() => {
+      //   this.confirmLoading = false
+      // })
     },
     changeTextarea(val) {
       this.jsContent = val

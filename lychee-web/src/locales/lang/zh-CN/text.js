@@ -27,4 +27,8 @@ export default {
   'text.radix-convert.beforeConversionRadix': '转换前的进制',
   'text.radix-convert.afterConversionRadix': '转换后的进制',
   'text.radix-convert.desc': 'm进制的数字num转为n进制',
+  'editor.method-name': '方法名称',
+  'editor.args': '方法参数',
+  'editor.execute': '执行',
+  'editor.reset': '清空',
 }

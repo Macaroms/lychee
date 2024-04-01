@@ -147,7 +147,7 @@ export default {
       let c = d.createElement('link')
       c.rel = 'stylesheet'
       let s = d.createElement('script')
-      s.src = 'https://widget.qweather.net/standard/static/js/he-standard.js?v=1.4.0'
+      s.src = 'https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0'
       let sn = d.getElementsByTagName('script')[0]
       sn.parentNode.insertBefore(c, sn)
       sn.parentNode.insertBefore(s, sn)

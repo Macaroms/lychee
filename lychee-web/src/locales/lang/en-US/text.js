@@ -31,4 +31,8 @@ export default {
   'text.radix-convert.beforeConversionRadix': 'Before Conversion Radix',
   'text.radix-convert.afterConversionRadix': 'After Conversion Radix',
   'text.radix-convert.desc': 'The number num in m radix is converted to n radix',
+  'editor.method-name': 'Method Name',
+  'editor.args': 'Method Args',
+  'editor.execute': 'Exec',
+  'editor.reset': 'Reset',
 }
