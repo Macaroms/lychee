@@ -131,4 +131,10 @@ public class TextController {
         return Result.ok(textService.base64Coder(param));
     }
 
+    @ApiOperation(value = "执行JS方法", notes = "执行JS方法")
+    @PostMapping("/execJsScript")
+    public Result<String> execJsScript(@RequestBody ExecScriptParam param) {
+        return Result.ok(textService.execJsScript(param));
+    }
+
 }

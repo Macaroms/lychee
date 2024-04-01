@@ -7,10 +7,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import com.jayway.jsonpath.JsonPath;
 import com.lychee.mapper.TestMapper;
-import com.lychee.model.param.ParseTextParam;
-import com.lychee.model.param.PropsConvertParam;
-import com.lychee.model.param.CoderParam;
-import com.lychee.model.param.UrlCoderParam;
+import com.lychee.model.param.*;
 import com.lychee.model.result.HistoryResult;
 import com.lychee.model.result.IpDataResult;
 import com.lychee.model.result.PickTextResult;
@@ -19,6 +16,7 @@ import com.lychee.pojo.TestEntity;
 import com.lychee.service.ITextService;
 import com.lychee.util.HttpClient;
 import com.lychee.util.PropertiesUtil;
+import com.lychee.util.ScriptExecUtil;
 import org.quartz.TriggerUtils;
 import org.quartz.impl.triggers.CronTriggerImpl;
 import org.seimicrawler.xpath.JXDocument;
@@ -265,10 +263,20 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
         return result;
     }
 
+    @Resource
+    private ScriptExecUtil scriptExecUtil;
+
+    @Override
+    public String execJsScript(ExecScriptParam param) {
+        Object[] array = param.getArgs().toArray();
+        System.out.println(param.getCode());
+        return scriptExecUtil.scriptEngineJs(param.getMethod(), param.getCode(), array);
+    }
+
     private String userIp(HttpServletRequest request) {
         for (String header : IP_HEADERS) {
             String ip = request.getHeader(header);
-            if (ip != null && ip.length() > 0 && !"unknown".equalsIgnoreCase(ip)) {
+            if (ip != null && !ip.isEmpty() && !"unknown".equalsIgnoreCase(ip)) {
                 return ip;
             }
         }

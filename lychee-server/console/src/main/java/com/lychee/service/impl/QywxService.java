@@ -13,9 +13,11 @@ import com.lychee.aes.WXBizMsgCrypt;
 import com.lychee.configuation.QywxConfig;
 import com.lychee.service.IQywxService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.json.XML;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -103,7 +105,7 @@ public class QywxService implements IQywxService {
 
     private static void getApprovalDetail(String spNo) {
         String url = "https://qyapi.weixin.qq.com/cgi-bin/oa/getapprovaldetail?access_token=%s";
-        String token = "oas8tw2QL64XNkJMdwaZIKRsZ3skIkgc6zzT8Hefh7Ws9nJG1IQ4jwKjhax_Ob5z4CfvjrSNicZlOLiBu_Zx98q5fgOPuzDfYahJxMdYSMNgY4RrZRI27BoQVL75fDRfHJ32BjtDSeYmRAF8wvEvXk07ozTj3T2d3OWEVadoHJbpAzQpNdOnaJCiyUYzLPN0tuEv-Ml0Aez6dEWuTjZD8g";
+        String token = getToken();
         HttpRequest httpRequest = new HttpRequest(String.format(url, token));
         httpRequest.setMethod(Method.POST);
         ImmutableMap<String, String> immutableMap = ImmutableMap.of("sp_no", spNo);
@@ -166,6 +168,8 @@ public class QywxService implements IQywxService {
             return applyDataItem.getJSONObject("value").getString("text");
         } else if ("Number".equals(control)) {
             return applyDataItem.getJSONObject("value").getString("new_number");
+        } else if ("Money".equals(control)) {
+            return applyDataItem.getJSONObject("value").getString("new_money");
         } else if ("Selector".equals(control)) {
             JSONObject selector = applyDataItem.getJSONObject("value").getJSONObject("selector");
             JSONArray array = selector.getJSONArray("options");
@@ -210,9 +214,36 @@ public class QywxService implements IQywxService {
         }
     }
 
-    public static void main(String[] args) {
-        String sMsg = "<xml><ToUserName><![CDATA[ww2728fd178710bdbe]]></ToUserName><FromUserName><![CDATA[sys]]></FromUserName><CreateTime>1708581785</CreateTime><MsgType><![CDATA[event]]></MsgType><Event><![CDATA[sys_approval_change]]></Event><AgentID>1000002</AgentID><ApprovalInfo><SpNo>202402220001</SpNo><SpName><![CDATA[立项申请测试模板]]></SpName><SpStatus>2</SpStatus><TemplateId><![CDATA[3WLtyqgf6R9RgH84RzTakYp8b4kf5gAKTqNEfQAH]]></TemplateId><ApplyTime>1708581648</ApplyTime><Applyer><UserId><![CDATA[JiangWei]]></UserId><Party><![CDATA[2]]></Party></Applyer><SpRecord><SpStatus>2</SpStatus><ApproverAttr>1</ApproverAttr><Details><Approver><UserId><![CDATA[JiangWei]]></UserId></Approver><Speech><![CDATA[]]></Speech><SpStatus>2</SpStatus><SpTime>1708581783</SpTime></Details></SpRecord><SpRecord><SpStatus>2</SpStatus><ApproverAttr>1</ApproverAttr><Details><Approver><UserId><![CDATA[JiangWei]]></UserId></Approver><Speech><![CDATA[]]></Speech><SpStatus>2</SpStatus><SpTime>1708581784</SpTime></Details></SpRecord><StatuChangeEvent>2</StatuChangeEvent></ApprovalInfo></xml>";
-        callbackListener(sMsg);
+    public  static String getTicket() {
+        String url = "https://qyapi.weixin.qq.com/cgi-bin/ticket/get";
+        String token = getToken();
+        HttpRequest httpRequest = new HttpRequest(String.format(url, token));
+        httpRequest.setMethod(Method.GET);
+        httpRequest.form("access_token", token);
+        httpRequest.form("type", "agent_config");
+        HttpResponse execute = httpRequest.execute();
+//        boolean ok = execute.isOk(); // 是否请求成功 判断依据为：状态码范围在200~299内
+//        System.out.println(ok);
+        String body = execute.body();
+        System.out.println(body);
+        JSONObject data = JSONObject.parse(body);
+        if (data.getIntValue("errcode") != 0) {
+            log.error("获取票据失败：{}", body);
+            throw new RuntimeException("获取票据失败");
+        }
+        return data.getString("ticket");
     }
+
+    public static String getToken() {
+        return "_IyETiYQmJdMn_ebjPzsszcPl9dUicKvw9pdKH0j-hpPR3l8TV6JjEJ3yWTh_Hd84NRitkpTpZlByfceYvWP9x6clXW0kIumW70DyB_CZeWje72u-tHVOp66y7Yl34RWP466zoo2Yv0zTPDQkPlD56xzh60YXIpfvLAd-HGzC9UHaJsrbgUXqQx1yYUTGDdzg8zEizz6ofS59_-SRQISvA";
+    }
+
+    public static void main(String[] args) {
+//        String sMsg = "<xml><ToUserName><![CDATA[ww2728fd178710bdbe]]></ToUserName><FromUserName><![CDATA[sys]]></FromUserName><CreateTime>1708581785</CreateTime><MsgType><![CDATA[event]]></MsgType><Event><![CDATA[sys_approval_change]]></Event><AgentID>1000002</AgentID><ApprovalInfo><SpNo>202402220001</SpNo><SpName><![CDATA[立项申请测试模板]]></SpName><SpStatus>2</SpStatus><TemplateId><![CDATA[3WLtyqgf6R9RgH84RzTakYp8b4kf5gAKTqNEfQAH]]></TemplateId><ApplyTime>1708581648</ApplyTime><Applyer><UserId><![CDATA[JiangWei]]></UserId><Party><![CDATA[2]]></Party></Applyer><SpRecord><SpStatus>2</SpStatus><ApproverAttr>1</ApproverAttr><Details><Approver><UserId><![CDATA[JiangWei]]></UserId></Approver><Speech><![CDATA[]]></Speech><SpStatus>2</SpStatus><SpTime>1708581783</SpTime></Details></SpRecord><SpRecord><SpStatus>2</SpStatus><ApproverAttr>1</ApproverAttr><Details><Approver><UserId><![CDATA[JiangWei]]></UserId></Approver><Speech><![CDATA[]]></Speech><SpStatus>2</SpStatus><SpTime>1708581784</SpTime></Details></SpRecord><StatuChangeEvent>2</StatuChangeEvent></ApprovalInfo></xml>";
+//        callbackListener(sMsg);
+        getTicket();
+    }
+
+
 
 }
