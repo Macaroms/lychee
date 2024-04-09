@@ -8,6 +8,7 @@ import com.lychee.model.result.TranslateResult;
 import com.lychee.service.IRemoteService;
 import com.lychee.service.ITextService;
 import com.lychee.util.HttpClient;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ import java.util.HashMap;
  * @since 2022/4/10 13:05
  */
 @Service
+@Slf4j
 public class RemoteService implements IRemoteService {
 
     @Value("${baidu.appid}")
@@ -70,6 +72,7 @@ public class RemoteService implements IRemoteService {
                         jsonObject.getJSONArray("trans_result").getJSONObject(0).get("dst").toString()
                 );
             } else {
+                log.error(result);
                 return null;
             }
         } catch (IOException | URISyntaxException e) {

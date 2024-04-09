@@ -137,4 +137,10 @@ public class TextController {
         return Result.ok(textService.execJsScript(param));
     }
 
+    @ApiOperation(value = "执行PY方法", notes = "执行PY方法")
+    @PostMapping("/execPyScript")
+    public Result<String> execPyScript(@RequestBody ExecPyScriptParam param) {
+        return Result.ok(textService.execPyScript(param));
+    }
+
 }

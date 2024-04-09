@@ -18,6 +18,8 @@ import com.lychee.service.ITextService;
 import com.lychee.util.HttpClient;
 import com.lychee.util.PropertiesUtil;
 import com.lychee.util.ScriptExecUtil;
+import org.python.core.PyObject;
+import org.python.util.PythonInterpreter;
 import org.quartz.TriggerUtils;
 import org.quartz.impl.triggers.CronTriggerImpl;
 import org.seimicrawler.xpath.JXDocument;
@@ -26,6 +28,7 @@ import org.springframework.util.DigestUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
@@ -260,7 +263,7 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
                 break;
             case 1:
                 byte[] decode = Base64.getDecoder().decode(param.getSrc().getBytes(StandardCharsets.UTF_8));
-                result =  new String(decode, StandardCharsets.UTF_8);
+                result = new String(decode, StandardCharsets.UTF_8);
                 break;
             default:
                 result = param.getSrc();
@@ -278,7 +281,20 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
         return scriptExecUtil.scriptEngineJs(param.getMethod(), param.getCode(), array);
     }
 
-    private Object[] getParamsByType(List<ExecScriptParam.Arg> args){
+    @Override
+    public String execPyScript(ExecPyScriptParam param) {
+        try (PythonInterpreter interpreter = new PythonInterpreter()) {
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            interpreter.setOut(out);
+            interpreter.exec(param.getCode());
+            // 将OutputStream转换为String，获取捕获的输出
+            return out.toString();
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    private Object[] getParamsByType(List<ExecScriptParam.Arg> args) {
         return args.stream().map(o -> {
             String type = o.getType();
             if ("text".equals(type)) {

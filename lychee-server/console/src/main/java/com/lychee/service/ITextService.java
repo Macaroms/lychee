@@ -49,4 +49,6 @@ public interface ITextService extends IService<TestEntity> {
 
     String execJsScript(ExecScriptParam param);
 
+    String execPyScript(ExecPyScriptParam param);
+
 }
