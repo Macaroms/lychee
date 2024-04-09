@@ -289,8 +289,6 @@ public class TextService extends ServiceImpl<TestMapper, TestEntity> implements 
             interpreter.exec(param.getCode());
             // 将OutputStream转换为String，获取捕获的输出
             return out.toString();
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
         }
     }
 
