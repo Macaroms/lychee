@@ -80,14 +80,14 @@
           关闭
         </a-button>
       </template>
-                    <a-form-item
-                    >
-                      <a-textarea
-                        style="height: 400px;background-color: #0c1021;color: #8da6ce"
-                        read-only
-                        v-model='result'
-                      />
-                    </a-form-item>
+      <a-form-item
+      >
+        <a-textarea
+          style="height: 400px;background-color: #0c1021;color: #8da6ce"
+          read-only
+          v-model='result'
+        />
+      </a-form-item>
     </a-modal>
   </page-header-wrapper>
 </template>
@@ -189,7 +189,6 @@ export default {
       this.$refs['dynamicValidateForm'].validate(valid => {
         if (valid) {
           this.confirmLoading = true
-          this.showModal()
           postAction(
             this.url.execJsScript,
             {
@@ -200,6 +199,7 @@ export default {
           ).then((res) => {
             if (res.code === 200) {
               this.result = res.data
+              this.showModal()
             } else {
               this.$message.error(res.message)
             }
