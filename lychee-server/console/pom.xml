@@ -150,6 +150,13 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <version>2.5.7</version>
+        <configuration>
+          <layout>ZIP</layout>
+          <!--去除在生产环境中不变的依赖 多个用逗号隔开,-->
+          <excludeGroupIds>
+            org.python
+          </excludeGroupIds>
+        </configuration>
       </plugin>
     </plugins>
   </build>
