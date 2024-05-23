@@ -1,5 +1,6 @@
 package com.lychee.controller;
 
+import com.lychee.annotation.AuthorizationIgnore;
 import com.lychee.model.Result;
 import com.lychee.model.param.TranslateParam;
 import com.lychee.model.result.PoetryResult;
@@ -23,12 +24,14 @@ public class RemoteController {
     @Resource
     private IRemoteService remoteService;
 
+    @AuthorizationIgnore
     @ApiOperation(value = "随机诗词", notes = "随机诗词")
     @GetMapping("/poetry")
     public Result<PoetryResult> poetry() {
         return Result.ok(remoteService.poetry());
     }
 
+    @AuthorizationIgnore
     @ApiOperation(value = "翻译", notes = "翻译")
     @PostMapping("/translate")
     public Result<TranslateResult> translate(@RequestBody TranslateParam param) {

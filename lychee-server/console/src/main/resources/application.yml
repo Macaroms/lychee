@@ -12,9 +12,9 @@ spring:
     # url: jdbc:mysql://localhost:3306/lychee-server?useUnicode=true&useSSL=false&characterEncoding=utf8
     # mysql5.7以上的版本
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/strawberry?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://81.70.103.101:3306/lychee?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     username: root
-    password: root
+    password: root@123
     hikari:
       # 连接池名
       pool-name: DateHikariCP
@@ -96,8 +96,8 @@ jwt:
   tokenHead: Bearer
 
 baidu:
-  appid:
-  key:
+  appid: 20230317001603256
+  key: py9hhnd7xOqKhBO0Hz9X
 txapi:
   token:
 

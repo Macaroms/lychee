@@ -1,5 +1,6 @@
 package com.lychee.controller;
 
+import com.lychee.annotation.AuthorizationIgnore;
 import com.lychee.model.Result;
 import com.lychee.service.ISearchService;
 import io.swagger.annotations.Api;
@@ -23,12 +24,14 @@ public class SearchController {
     @Resource
     private ISearchService searchService;
 
+    @AuthorizationIgnore
     @ApiOperation(value = "IP信息查询", notes = "IP信息查询")
     @GetMapping("/ipSearch")
     public Result<?> ipSearch(@RequestParam String ip) {
         return searchService.ipData(ip);
     }
 
+    @AuthorizationIgnore
     @ApiOperation(value = "垃圾分类查询", notes = "垃圾分类查询")
     @GetMapping("/rubbishClassify")
     public Result<?> rubbishClassify(@RequestParam String name) {

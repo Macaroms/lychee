@@ -3,6 +3,7 @@ package com.lychee.controller;
 import com.alibaba.fastjson2.JSONObject;
 import com.lychee.aes.AesException;
 import com.lychee.aes.WXBizMsgCrypt;
+import com.lychee.annotation.AuthorizationIgnore;
 import com.lychee.service.IQywxService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,6 +33,8 @@ public class QywxController {
      *
      * @return
      */
+
+    @AuthorizationIgnore
     @ApiOperation(value = "回调", notes = "回调")
     @RequestMapping(value = "/getCallBack", method = {RequestMethod.GET, RequestMethod.POST})
     public String getCallBack(HttpServletRequest request, @RequestBody(required = false) String body) {
